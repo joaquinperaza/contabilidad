@@ -35,6 +35,7 @@ import app.outlay.core.utils.NumberUtils;
 import app.outlay.domain.model.Category;
 import app.outlay.domain.model.Expense;
 import app.outlay.domain.model.User;
+import app.outlay.impl.AppPreferences;
 import app.outlay.mvp.presenter.EnterExpensePresenter;
 import app.outlay.mvp.view.EnterExpenseView;
 import app.outlay.view.Navigator;
@@ -171,7 +172,8 @@ public class MainFragment extends BaseMvpFragment<EnterExpenseView, EnterExpense
             }
         }, validator);
         adapter.setOnCategoryClickListener(category -> {
-            if (validator.valid(amountText.getText().toString())) {
+            String curr= new AppPreferences(getContext()).getCurrency();
+            if (validator.valid(amountText.getText().toString(),curr)) {
                 Expense e = new Expense();
                 e.setCategory(category);
                 if (!TextUtils.isEmpty(expenseNote.getText())) {

@@ -11,7 +11,7 @@ public class AppPreferences {
     public static final int THEME_LIGHT = 1;
 
     private static final String PREF_THEME = "_outlayTheme";
-
+    private static final String PREF_CURRENCY = "_curr";
     private Context context;
 
     public AppPreferences(Context context) {
@@ -25,9 +25,11 @@ public class AppPreferences {
     private void putString(String key, String value) {
         getPreferences().edit().putString(key, value).apply();
     }
-
     private String getString(String key) {
         return getPreferences().getString(key, null);
+    }
+    private String getString(String key, String def) {
+        return getPreferences().getString(key, def);
     }
 
     private void putInt(String key, int value) {
@@ -61,6 +63,15 @@ public class AppPreferences {
 
     public int getTheme() {
         return getInt(PREF_THEME);
+    }
+
+
+    public void setCurrency(String c) {
+        putString(PREF_CURRENCY, c);
+    }
+
+    public String getCurrency() {
+        return getString(PREF_CURRENCY,"b");
     }
 
     public boolean showWhatsNew() {

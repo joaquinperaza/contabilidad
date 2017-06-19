@@ -1,12 +1,16 @@
 package app.outlay.view.numpad;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
+
+import app.outlay.R;
+import app.outlay.impl.AppPreferences;
 
 /**
  * Created by Bogdan Melnychuk on 1/15/16.
@@ -137,6 +141,23 @@ public class NumpadView extends LinearLayout implements View.OnClickListener {
         }
         if (attachedEditable != null) {
             String textBefore = attachedEditable.getText();
+            String curr= new AppPreferences(getContext()).getCurrency();
+            if(textBefore.equals("")){
+
+                String label;
+                if (curr.equals("a")){label= getContext().getString(R.string.label_currencya);} else {label= getContext().getString(R.string.label_currencyb);}
+                textBefore=label+" ";
+
+            }
+try {
+    if (curr.equals("a") && Integer.valueOf(textBefore.substring(4, textBefore.length())) == 0) {
+        textBefore = "USD ";
+    } else if (curr.equals("b") && Integer.valueOf(textBefore.substring(2, textBefore.length())) == 0) {
+        textBefore = "$ ";
+    }
+} catch (Exception e){}
+
+
             updateAttachedView(textBefore + i);
         }
     }
@@ -145,9 +166,24 @@ public class NumpadView extends LinearLayout implements View.OnClickListener {
         if (numpadClickListener != null) {
             numpadClickListener.onDecimalClicked();
         }
-        if (attachedEditable != null) {
+        if (attachedEditable != null && attachedEditable.getText().length()>1) {
             String textBefore = attachedEditable.getText();
-            updateAttachedView(textBefore + ".");
+            String textAfter;
+            String curr= new AppPreferences(getContext()).getCurrency();
+            String newC;
+            if (curr.equals("a")){
+                textAfter= textBefore.substring(3,textBefore.length());
+                newC="b";} else {
+                textAfter= textBefore.substring(1,textBefore.length());
+                newC="a";}
+            new AppPreferences(getContext()).setCurrency(newC);
+            String label;
+
+            if (newC.equals("a")){label= getContext().getString(R.string.label_currencya);} else {label= getContext().getString(R.string.label_currencyb);}
+
+
+            updateAttachedView(label+textAfter);
+
         }
     }
 
@@ -157,10 +193,17 @@ public class NumpadView extends LinearLayout implements View.OnClickListener {
         }
         if (attachedEditable != null) {
             String textBefore = attachedEditable.getText();
+            int min;
+            String curr= new AppPreferences(getContext()).getCurrency();
 
-            if (textBefore.length() > 0) {
+            if (curr.equals("a")){
+                min= 4;
+            } else {
+                min = 2;
+            }
+            if (textBefore.length() > min) {
                 String textAfter = textBefore.substring(0, textBefore.length() - 1);
-                updateAttachedView(textAfter, false);
+                updateAttachedView(textAfter, true);
             }
         }
     }
@@ -171,10 +214,30 @@ public class NumpadView extends LinearLayout implements View.OnClickListener {
 
     private void updateAttachedView(String str, boolean useValidator) {
         if(useValidator && validator != null) {
-            if (validator.valid(str)) {
+            String curr= new AppPreferences(getContext()).getCurrency();
+            if (validator.valid(str,curr)) {
                 attachedEditable.setText(str);
             } else {
+
                 validator.onInvalidInput(str);
+                try {boolean textAfter;
+
+
+                    if (curr.equals("a")){
+                        textAfter= str.length()==4;
+                    } else {
+                        textAfter= str.length()==2;
+                    }
+
+                    if(textAfter){
+                        updateAttachedView(str+"0");
+                    }
+
+                } catch (Exception e) {
+
+                }
+
+
             }
         } else {
             attachedEditable.setText(str);

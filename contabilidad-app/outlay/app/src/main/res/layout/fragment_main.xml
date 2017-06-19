@@ -43,7 +43,7 @@
             android:focusableInTouchMode="false"
             android:fontFamily="sans-serif-light"
             android:gravity="center"
-            android:hint="0.0"
+            android:hint="$/USD"
             android:lines="1"
             android:textColor="?attr/textColorPrimary"
             android:textColorHint="@color/text_disabled"

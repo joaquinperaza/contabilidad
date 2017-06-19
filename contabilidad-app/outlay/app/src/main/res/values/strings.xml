@@ -10,6 +10,10 @@
     <string name="menu_item_settings">Configuraciones</string>
 
     <string name="info_expense_created">Se gastó %1$.2f en %2$s</string>
+    <string name="label_currencyb">$</string>
+    <string name="label_currencya">USD</string>
+    <string name="name_currencyb">peso</string>
+    <string name="name_currencya">usd</string>
 
     <string name="error_no_email_clients">No hay cliente de mail</string>
     <string name="error_category_name_empty">La categoria no puede ser vacia</string>
