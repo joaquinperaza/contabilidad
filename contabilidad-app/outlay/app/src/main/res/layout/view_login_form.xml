@@ -32,7 +32,7 @@
                     android:layout_marginBottom="@dimen/spacing_default"
                     android:textColor="?attr/textColorPrimary"
                     android:layout_marginTop="@dimen/spacing_very_small"
-                    android:text="SIGN IN"
+                    android:text="Iniciar Sesión"
                     android:textSize="18dp"
                     android:textStyle="bold" />
 
@@ -59,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/signInInputEmail"
                     android:layout_marginTop="@dimen/spacing_default"
-                    android:hint="Password">
+                    android:hint="Contraseña">
 
                     <android.support.v7.widget.AppCompatEditText
                         android:id="@+id/signInPassword"

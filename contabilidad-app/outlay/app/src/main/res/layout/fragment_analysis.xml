@@ -60,7 +60,7 @@
                 android:layout_height="match_parent"
                 android:editable="false"
                 android:focusable="false"
-                android:hint="Start Date"
+                android:hint="Desde"
                 android:textColor="?attr/textColorPrimary" />
 
         </android.support.design.widget.TextInputLayout>
@@ -78,7 +78,7 @@
                 android:layout_height="match_parent"
                 android:editable="false"
                 android:focusable="false"
-                android:hint="End Date"
+                android:hint="Hasta"
                 android:textColor="?attr/textColorPrimary" />
 
         </android.support.design.widget.TextInputLayout>

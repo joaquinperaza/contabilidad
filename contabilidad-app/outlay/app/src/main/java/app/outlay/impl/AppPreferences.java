@@ -35,7 +35,7 @@ public class AppPreferences {
     }
 
     private int getInt(String key) {
-        return getPreferences().getInt(key, 0);
+        return getPreferences().getInt(key, 1);
     }
 
     private void putBoolean(String key, boolean value) {
@@ -65,7 +65,7 @@ public class AppPreferences {
 
     public boolean showWhatsNew() {
         String key = BuildConfig.VERSION_NAME + "_whatsNew";
-        boolean result = getBoolean(key, true);
+        boolean result = getBoolean(key, false);
         if (result) {
             putBoolean(key, false);
         }

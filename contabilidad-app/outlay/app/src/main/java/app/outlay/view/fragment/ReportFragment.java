@@ -152,11 +152,16 @@ public class ReportFragment extends BaseMvpFragment<StatisticView, ReportPresent
 
         recyclerView.setLayoutManager(layoutManager);
         adapter = new ReportAdapter();
+
         recyclerView.setAdapter(adapter);
         presenter.getExpenses(selectedDate, selectedPeriod);
 
         adapter.setOnItemClickListener((category, report) -> goToExpensesList(selectedDate, selectedPeriod, category.getId()));
+
+        ////////////
+        ////////////
     }
+
 
     @Override
     public void showReport(Report report) {

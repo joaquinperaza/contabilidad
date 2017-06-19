@@ -5,6 +5,28 @@
     android:background="?attr/backgroundColor">
 
 
+    <TextView
+        android:id="@+id/textView5"
+        android:textColor="?attr/textColorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Personal"
+        android:visibility="visible"
+        android:layout_below="@+id/categoryInputLayout"
+        android:layout_alignStart="@+id/colorPicker"
+        android:layout_marginStart="19dp" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:textColor="?attr/textColorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Empresa"
+        android:visibility="visible"
+        android:layout_below="@+id/categoryInputLayout"
+        android:layout_alignEnd="@+id/categoryInputLayout"
+        android:layout_marginEnd="24dp" />
+
     <android.support.v7.widget.Toolbar
         android:layout_marginBottom="16dp"
         android:id="@+id/toolbar"
