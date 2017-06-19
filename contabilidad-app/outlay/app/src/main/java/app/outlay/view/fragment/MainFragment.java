@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -179,7 +180,9 @@ public class MainFragment extends BaseMvpFragment<EnterExpenseView, EnterExpense
                 if (!TextUtils.isEmpty(expenseNote.getText())) {
                     e.setNote(expenseNote.getText().toString());
                 }
-                e.setAmount(new BigDecimal(amountText.getText().toString()));
+
+                Log.e("ampunt",amountText.toString());
+                e.setAmount(new BigDecimal(parsemoney(amountText.getText().toString(),e)));
                 e.setReportedWhen(selectedDate);
                 analytics().trackExpenseCreated(e);
                 if(!TextUtils.isEmpty(e.getNote())) {
@@ -200,6 +203,21 @@ public class MainFragment extends BaseMvpFragment<EnterExpenseView, EnterExpense
         timelineRecycler.setLayoutManager(stickyHeaderLayoutManager);
         timelineRecycler.setAdapter(expensesAdapter);
         timelineRecycler.addItemDecoration(decor);
+    }
+    private String parsemoney(String curr, Expense e){
+        double cotizacion=30;
+        if (curr.contains("$")){
+            String old;
+            if(e.getNote()==null){old=".";}
+            else {old="///"+e.getNote();}
+            e.setNote(curr+" convertidos a USD a "+String.valueOf(cotizacion)+old);
+
+            return String.valueOf(Double.valueOf(curr.substring(2,curr.length()))/cotizacion);
+        } else if (curr.contains("USD")){
+            return curr.substring(4,curr.length());
+        }
+        return "0";
+
     }
 
     private void initStaticContent() {
