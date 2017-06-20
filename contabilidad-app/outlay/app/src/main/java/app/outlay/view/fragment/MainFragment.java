@@ -205,15 +205,12 @@ public class MainFragment extends BaseMvpFragment<EnterExpenseView, EnterExpense
         timelineRecycler.addItemDecoration(decor);
     }
     private String parsemoney(String curr, Expense e){
-        double cotizacion=30;
+        //double cotizacion=30;
         if (curr.contains("$")){
-            String old;
-            if(e.getNote()==null){old=".";}
-            else {old="///"+e.getNote();}
-            e.setNote(curr+" convertidos a USD a "+String.valueOf(cotizacion)+old);
-
-            return String.valueOf(Double.valueOf(curr.substring(2,curr.length()))/cotizacion);
+            e.setMoneda("pesos");
+            return curr.substring(2,curr.length());
         } else if (curr.contains("USD")){
+            e.setMoneda("usd");
             return curr.substring(4,curr.length());
         }
         return "0";

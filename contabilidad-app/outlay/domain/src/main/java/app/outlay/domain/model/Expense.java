@@ -16,6 +16,7 @@ public class Expense {
     private BigDecimal amount;
     private Date reportedWhen;
     private Category category;
+    private String moneda;
 
     public String getId() {
         return id;
@@ -32,6 +33,15 @@ public class Expense {
 
     public Expense setNote(String note) {
         this.note = note;
+        return this;
+    }
+
+    public String getMoneda() {
+        return moneda;
+    }
+
+    public Expense setMoneda(String mon) {
+        this.moneda = mon;
         return this;
     }
 

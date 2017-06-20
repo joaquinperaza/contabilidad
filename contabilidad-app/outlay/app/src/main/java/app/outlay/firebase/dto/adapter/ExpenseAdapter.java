@@ -23,6 +23,7 @@ public class ExpenseAdapter {
         Category category = new Category();
         category.setId(expenseDto.getCategoryId());
         expense.setCategory(category);
+        expense.setMoneda(expenseDto.getMoneda());
 
         return expense;
     }
@@ -34,6 +35,7 @@ public class ExpenseAdapter {
         expenseDto.setId(expense.getId());
         expenseDto.setReportedWhen(expense.getReportedWhen().getTime());
         expenseDto.setCategoryId(expense.getCategory().getId());
+        expenseDto.setMoneda(expense.getMoneda());
 
         return expenseDto;
     }

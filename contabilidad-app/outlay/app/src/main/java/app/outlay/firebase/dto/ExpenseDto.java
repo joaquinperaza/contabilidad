@@ -10,6 +10,7 @@ public class ExpenseDto {
     private String amount;
     private Long reportedWhen;
     private String categoryId;
+    private String moneda;
 
     public String getId() {
         return id;
@@ -25,6 +26,14 @@ public class ExpenseDto {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public String getMoneda() {
+        return moneda;
+    }
+
+    public void setMoneda(String mon) {
+        this.moneda = mon;
     }
 
     public String getAmount() {

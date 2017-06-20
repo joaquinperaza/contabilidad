@@ -56,7 +56,7 @@ public class ExpenseFirebaseSource implements ExpenseDataSource {
             if (TextUtils.isEmpty(key)) {
                 key = mDatabase.child("users")
                         .child(currentUser.getId())
-                        .child("expenses")
+                        .child("expensesnew")
                         .child(DateUtils.toYearMonthString(expense.getReportedWhen()))
                         .push().getKey();
                 expense.setId(key);
@@ -66,7 +66,7 @@ public class ExpenseFirebaseSource implements ExpenseDataSource {
 
             DatabaseReference databaseReference = mDatabase.child("users")
                     .child(currentUser.getId())
-                    .child("expenses")
+                    .child("expensesnew")
                     .child(DateUtils.toYearMonthString(expense.getReportedWhen()))
                     .child(key);
             databaseReference.addValueEventListener(new ValueEventListener() {
