@@ -34,6 +34,7 @@ public class ExpenseRepositoryImpl implements ExpenseRepository {
         return getDataSource().saveExpense(expense);
     }
 
+
     @Override
     public Observable<Expense> remove(Expense expense) {
         return getDataSource().remove(expense);

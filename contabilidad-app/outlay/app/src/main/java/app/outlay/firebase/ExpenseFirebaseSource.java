@@ -48,6 +48,8 @@ public class ExpenseFirebaseSource implements ExpenseDataSource {
         mDatabase = databaseReference;
         adapter = new ExpenseAdapter();
     }
+    
+
 
     @Override
     public Observable<Expense> saveExpense(Expense expense) {
@@ -55,8 +57,9 @@ public class ExpenseFirebaseSource implements ExpenseDataSource {
             String key = expense.getId();
             if (TextUtils.isEmpty(key)) {
                 key = mDatabase.child("users")
+                        .child("expensesqueue")
                         .child(currentUser.getId())
-                        .child("expensesnew")
+
                         .child(DateUtils.toYearMonthString(expense.getReportedWhen()))
                         .push().getKey();
                 expense.setId(key);
@@ -65,8 +68,9 @@ public class ExpenseFirebaseSource implements ExpenseDataSource {
             ExpenseDto expenseDto = adapter.fromExpense(expense);
 
             DatabaseReference databaseReference = mDatabase.child("users")
+                    .child("expensesqueue")
                     .child(currentUser.getId())
-                    .child("expensesnew")
+
                     .child(DateUtils.toYearMonthString(expense.getReportedWhen()))
                     .child(key);
             databaseReference.addValueEventListener(new ValueEventListener() {
