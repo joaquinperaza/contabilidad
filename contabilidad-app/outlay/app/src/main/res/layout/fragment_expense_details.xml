@@ -23,6 +23,8 @@
         android:paddingLeft="@dimen/spacing_default"
         android:paddingRight="@dimen/spacing_default">
 
+
+
         <ImageView
             android:id="@+id/categoryIcon"
             android:layout_width="wrap_content"
@@ -91,5 +93,21 @@
                 android:textColor="?attr/textColorPrimary" />
 
         </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/cotL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/noteInputLayout">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/cot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ingresado en USD"
+                android:editable="false"
+                android:textColor="?attr/textColorPrimary" />
+
+        </android.support.design.widget.TextInputLayout>
+
     </RelativeLayout>
 </RelativeLayout>

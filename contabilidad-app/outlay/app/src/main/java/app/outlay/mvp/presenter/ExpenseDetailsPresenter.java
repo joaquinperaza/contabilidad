@@ -6,6 +6,7 @@ import app.outlay.domain.interactor.DeleteExpenseUseCase;
 import app.outlay.domain.interactor.GetCategoriesUseCase;
 import app.outlay.domain.interactor.GetExpenseUseCase;
 import app.outlay.domain.interactor.SaveExpenseUseCase;
+import app.outlay.domain.interactor.UpdateExpenseUseCase;
 import app.outlay.domain.model.Category;
 import app.outlay.domain.model.Expense;
 import app.outlay.mvp.view.ExpenseDetailsView;
@@ -22,6 +23,7 @@ public class ExpenseDetailsPresenter extends MvpBasePresenter<ExpenseDetailsView
     private GetCategoriesUseCase getCategoriesUseCase;
     private GetExpenseUseCase getExpenseUseCase;
     private SaveExpenseUseCase saveExpenseUseCase;
+    private UpdateExpenseUseCase updateExpenseUseCase;
     private DeleteExpenseUseCase deleteExpenseUseCase;
 
     @Inject
@@ -29,12 +31,14 @@ public class ExpenseDetailsPresenter extends MvpBasePresenter<ExpenseDetailsView
             GetCategoriesUseCase getCategoriesUseCase,
             GetExpenseUseCase getExpenseUseCase,
             SaveExpenseUseCase saveExpenseUseCase,
-            DeleteExpenseUseCase deleteExpenseUseCase
+            DeleteExpenseUseCase deleteExpenseUseCase,
+            UpdateExpenseUseCase updateExpenseUseCase
     ) {
         this.getCategoriesUseCase = getCategoriesUseCase;
         this.getExpenseUseCase = getExpenseUseCase;
         this.saveExpenseUseCase = saveExpenseUseCase;
         this.deleteExpenseUseCase = deleteExpenseUseCase;
+        this.updateExpenseUseCase = updateExpenseUseCase;
     }
 
     public void findExpense(String expenseId, Date date) {
@@ -58,7 +62,7 @@ public class ExpenseDetailsPresenter extends MvpBasePresenter<ExpenseDetailsView
     }
 
     public void updateExpense(Expense expense) {
-        saveExpenseUseCase.execute(expense, new DefaultSubscriber());
+        updateExpenseUseCase.execute(expense, new DefaultSubscriber());
     }
 
     public void deleteExpense(Expense expense) {

@@ -13,8 +13,10 @@ import rx.Observable;
 
 public interface ExpenseDataSource {
     Observable<Expense> saveExpense(Expense expense);
+    Observable<Expense> updateExpense(Expense expense);
     Observable<List<Expense>> getExpenses(Date startDate, Date endDate);
-    Observable<List<Expense>> getExpenses(Date startDate, Date endDate, String categoryId);
+    //Observable<List<Expense>> getExpenses(Date startDate, Date endDate, String categoryId);
+    Observable<List<Expense>> getExpenses(Date startDate, Date endDate, String categoryId, String user);
     Observable<Expense> findExpense(String expenseId, Date date);
     Observable<Expense> remove(Expense expense);
 }

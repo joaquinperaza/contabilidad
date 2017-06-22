@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="Theme.Outlay.Basic" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.Outlay.Basic" parent="android:Theme.Light">
         <item name="android:windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="windowActionModeOverlay">true</item>

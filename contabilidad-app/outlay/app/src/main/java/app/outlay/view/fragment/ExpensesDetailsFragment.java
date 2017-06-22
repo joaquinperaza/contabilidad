@@ -7,6 +7,7 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,6 +19,7 @@ import android.widget.ImageView;
 
 import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
 
+import app.outlay.R;
 import app.outlay.core.utils.DateUtils;
 import app.outlay.core.utils.NumberUtils;
 import app.outlay.domain.model.Category;
@@ -64,6 +66,9 @@ public class ExpensesDetailsFragment extends BaseMvpFragment<ExpenseDetailsView,
 
     @Bind(app.outlay.R.id.note)
     EditText note;
+
+    @Bind(app.outlay.R.id.cot)
+    EditText cot;
 
     @Bind(app.outlay.R.id.date)
     EditText dateEdit;
@@ -217,10 +222,15 @@ public class ExpensesDetailsFragment extends BaseMvpFragment<ExpenseDetailsView,
         if (e.getId() != null) {
             selectedCategory = e.getCategory();
             loadCategoryIcon(selectedCategory);
+            if(e.getCotizado()!=null) {
+                String mystring = String.valueOf((int) (double) Double.valueOf(NumberUtils.formatAmount(e.getAmount()))*Double.valueOf(e.getCotizado()));
 
+                Log.e("test", mystring);
+                cot.setText("Monto origen: $"+mystring+" Cotizacion: "+e.getCotizado());}
             categoryTitle.setText(e.getCategory().getTitle());
             amount.setText(NumberUtils.formatAmount(e.getAmount()));
             note.setText(e.getNote());
+
             setDateStr(expense.getReportedWhen());
         } else {
             this.expense.setReportedWhen(defaultDate);

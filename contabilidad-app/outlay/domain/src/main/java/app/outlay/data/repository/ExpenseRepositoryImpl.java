@@ -33,6 +33,10 @@ public class ExpenseRepositoryImpl implements ExpenseRepository {
     public Observable<Expense> saveExpense(Expense expense) {
         return getDataSource().saveExpense(expense);
     }
+    @Override
+    public Observable<Expense> updateExpense(Expense expense) {
+        return getDataSource().updateExpense(expense);
+    }
 
 
     @Override
@@ -49,16 +53,25 @@ public class ExpenseRepositoryImpl implements ExpenseRepository {
     public Observable<List<Expense>> getExpenses(
             Date startDate,
             Date endDate
-    ) {
-        return getExpenses(startDate, endDate, null);
-    }
 
+    ) {
+        return getExpenses(startDate, endDate);
+    }
     @Override
     public Observable<List<Expense>> getExpenses(
             Date startDate,
             Date endDate,
             String categoryId
     ) {
-        return getDataSource().getExpenses(startDate, endDate, categoryId);
+        return getDataSource().getExpenses(startDate, endDate, categoryId,null);
+    }
+    @Override
+    public Observable<List<Expense>> getExpenses(
+            Date startDate,
+            Date endDate,
+            String categoryId,
+            String user
+    ) {
+        return getDataSource().getExpenses(startDate, endDate, categoryId,user);
     }
 }

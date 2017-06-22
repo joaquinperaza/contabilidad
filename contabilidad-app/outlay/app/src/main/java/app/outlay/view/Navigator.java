@@ -57,7 +57,7 @@ public final class Navigator {
         SingleFragmentActivity.start(activityFrom, ReportFragment.class, b);
     }
 
-    public static void goToExpensesList(FragmentActivity activityFrom, Date dateFrom, Date dateTo, String categoryId) {
+    public static void goToExpensesList(FragmentActivity activityFrom, Date dateFrom, Date dateTo, String categoryId,String user) {
         Bundle b = new Bundle();
         if (categoryId != null) {
             b.putString(ExpensesListFragment.ARG_CATEGORY_ID, categoryId);
@@ -67,6 +67,9 @@ public final class Navigator {
         }
         if (dateTo != null) {
             b.putLong(ExpensesListFragment.ARG_DATE_TO, dateTo.getTime());
+        }
+        if (user!=null) {
+            b.putString(ExpensesListFragment.ARG_USR, user);
         }
         changeFragment(activityFrom, ExpensesListFragment.class, b);
     }

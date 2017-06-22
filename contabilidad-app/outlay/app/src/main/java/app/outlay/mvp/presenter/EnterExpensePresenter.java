@@ -75,7 +75,9 @@ public class EnterExpensePresenter extends MvpBasePresenter<EnterExpenseView> {
         GetExpensesUseCase.Input input = new GetExpensesUseCase.Input(
                 new LocalDate().minusMonths(6).toDate(),
                 new Date(),
+                null,
                 null
+
         );
 
         getExpensesUseCase.execute(input, new DefaultSubscriber<Report>() {

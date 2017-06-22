@@ -23,8 +23,8 @@ public class ExpensesListPresenter extends MvpBasePresenter<ExpensesView> {
         this.loadReportUseCase = loadReportUseCase;
     }
 
-    public void findExpenses(Date dateFrom, Date dateTo, String categoryId) {
-        GetExpensesUseCase.Input input = new GetExpensesUseCase.Input(dateFrom, dateTo, categoryId);
+    public void findExpenses(Date dateFrom, Date dateTo, String categoryId,String user) {
+        GetExpensesUseCase.Input input = new GetExpensesUseCase.Input(dateFrom, dateTo, categoryId,user);
         loadReportUseCase.execute(input, new DefaultSubscriber<Report>() {
             @Override
             public void onNext(Report report) {

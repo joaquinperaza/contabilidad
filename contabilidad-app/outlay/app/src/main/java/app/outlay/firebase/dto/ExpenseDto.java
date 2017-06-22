@@ -11,6 +11,7 @@ public class ExpenseDto {
     private Long reportedWhen;
     private String categoryId;
     private String moneda;
+    private String cotizado;
 
     public String getId() {
         return id;
@@ -31,6 +32,15 @@ public class ExpenseDto {
     public String getMoneda() {
         return moneda;
     }
+
+
+    public String getCotizado() {
+        return cotizado;
+    }
+    public void setCotizado(String mon) {
+        this.cotizado = mon;
+    }
+
 
     public void setMoneda(String mon) {
         this.moneda = mon;

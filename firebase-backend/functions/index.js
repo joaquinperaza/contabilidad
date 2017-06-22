@@ -92,7 +92,7 @@ exports.process = functions.database.ref('/users/expensesqueue')
                             amountO: amount,
                             note: note,
                             reportedWhen: date,
-                            cotizado: cotizacion
+                            cotizado: String(cotizacion)
 
                         });
                         
@@ -137,7 +137,7 @@ exports.process = functions.database.ref('/users/expensesqueue')
                             amountO: amount,
                             note: note,
                             reportedWhen: date,
-                            cotizado: cotizacion
+                            cotizado: String(cotizacion)
 
                         });
                         

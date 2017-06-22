@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,7 @@ public class ExpensesListFragment extends BaseMvpFragment<ExpensesView, Expenses
     public static final String ARG_CATEGORY_ID = "_argCategoryId";
     public static final String ARG_DATE_FROM = "_argDateFrom";
     public static final String ARG_DATE_TO = "_argDateTo";
+    public static final String ARG_USR = "_argusr";
 
     private static final int MODE_LIST = 0;
     private static final int MODE_GRID = 1;
@@ -72,6 +74,7 @@ public class ExpensesListFragment extends BaseMvpFragment<ExpensesView, Expenses
     private Date dateFrom;
     private Date dateTo;
     private String categoryId;
+    private String user;
 
     private int mode = MODE_LIST;
 
@@ -84,6 +87,8 @@ public class ExpensesListFragment extends BaseMvpFragment<ExpensesView, Expenses
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getApp().getUserComponent().inject(this);
+        user= getArguments().getString(ReportFragment.setUser);
+        //Log.e("ondetoy",user);
 
         long dateFromMillis = getArguments().getLong(ARG_DATE_FROM);
         long dateToMillis = getArguments().getLong(ARG_DATE_TO);
@@ -129,7 +134,7 @@ public class ExpensesListFragment extends BaseMvpFragment<ExpensesView, Expenses
     @Override
     public void onResume() {
         super.onResume();
-        presenter.findExpenses(dateFrom, dateTo, categoryId);
+        presenter.findExpenses(dateFrom, dateTo, categoryId,user);
     }
 
     private void displayExpenses(List<Expense> expenses) {

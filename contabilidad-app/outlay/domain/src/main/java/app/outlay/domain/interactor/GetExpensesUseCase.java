@@ -48,12 +48,14 @@ public class GetExpensesUseCase extends UseCase<GetExpensesUseCase.Input, Report
 //                    }
 //            );
 //        } else {
-            return expenseRepository.getExpenses(input.startDate, input.endDate, input.categoryId)
+            return expenseRepository.getExpenses(input.startDate, input.endDate, input.categoryId, input.user)
                     .map(expenses -> {
                         Report report = new Report();
                         report.setEndDate(input.endDate);
                         report.setStartDate(input.startDate);
                         report.setExpenses(expenses);
+
+
                         return report;
                     });
 //        }
@@ -63,11 +65,13 @@ public class GetExpensesUseCase extends UseCase<GetExpensesUseCase.Input, Report
         private final Date startDate;
         private final Date endDate;
         private final String categoryId;
+        private final String user;
 
-        public Input(Date startDate, Date endDate, String categoryId) {
+        public Input(Date startDate, Date endDate, String categoryId, String user) {
             this.startDate = startDate;
             this.endDate = endDate;
             this.categoryId = categoryId;
+            this.user=user;
         }
     }
 }

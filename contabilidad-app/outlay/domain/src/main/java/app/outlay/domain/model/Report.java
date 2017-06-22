@@ -21,6 +21,7 @@ public class Report {
     private List<Expense> expenses;
     private Date startDate;
     private Date endDate;
+    private String user;
 
     public boolean isEmpty() {
         return expenses.isEmpty();

@@ -13,6 +13,7 @@ import rx.Observable;
 
 public interface ExpenseRepository {
     Observable<Expense> saveExpense(Expense expense);
+    Observable<Expense> updateExpense(Expense expense);
 
     Observable<Expense> remove(Expense expense);
 
@@ -21,4 +22,5 @@ public interface ExpenseRepository {
     Observable<List<Expense>> getExpenses(Date startDate, Date endDate);
 
     Observable<List<Expense>> getExpenses(Date startDate, Date endDate, String categoryId);
+    Observable<List<Expense>> getExpenses(Date startDate, Date endDate, String categoryId,String user);
 }

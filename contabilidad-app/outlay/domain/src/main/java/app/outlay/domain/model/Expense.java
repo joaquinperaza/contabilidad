@@ -17,6 +17,7 @@ public class Expense {
     private Date reportedWhen;
     private Category category;
     private String moneda;
+    private String cotizado;
 
     public String getId() {
         return id;
@@ -38,6 +39,13 @@ public class Expense {
 
     public String getMoneda() {
         return moneda;
+    }
+    public String getCotizado() {
+        return cotizado;
+    }
+    public Expense setCotizado(String mon) {
+        this.cotizado = mon;
+        return this;
     }
 
     public Expense setMoneda(String mon) {

@@ -41,6 +41,7 @@ public class ReportFragment extends BaseMvpFragment<StatisticView, ReportPresent
     public static final int PERIOD_DAY = 0;
     public static final int PERIOD_WEEK = 1;
     public static final int PERIOD_MONTH = 2;
+    public static final String setUser = "customUser";
 
     @Bind(app.outlay.R.id.recyclerView)
     RecyclerView recyclerView;
@@ -60,6 +61,7 @@ public class ReportFragment extends BaseMvpFragment<StatisticView, ReportPresent
     private int selectedPeriod;
     private Date selectedDate;
     private ReportAdapter adapter;
+    String user;
 
     @Override
     public ReportPresenter createPresenter() {
@@ -68,9 +70,12 @@ public class ReportFragment extends BaseMvpFragment<StatisticView, ReportPresent
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         getApp().getUserComponent().inject(this);
+
         selectedDate = new Date(getArguments().getLong(ARG_DATE, new Date().getTime()));
+        user= getArguments().getString(setUser);
     }
 
     @Nullable
@@ -105,13 +110,13 @@ public class ReportFragment extends BaseMvpFragment<StatisticView, ReportPresent
                     selectedDate = selected;
                     ReportFragment.this.setTitle(DateUtils.toShortString(selected));
                     updateTitle();
-                    presenter.getExpenses(selectedDate, selectedPeriod);
+                    presenter.getExpenses(selectedDate, selectedPeriod,null,user);
                 });
                 datePickerFragment.show(getChildFragmentManager(), "datePicker");
                 break;
             case app.outlay.R.id.action_list:
                 analytics().trackViewExpensesList();
-                goToExpensesList(selectedDate, selectedPeriod);
+                goToExpensesList(selectedDate, selectedPeriod,null,user);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -146,7 +151,7 @@ public class ReportFragment extends BaseMvpFragment<StatisticView, ReportPresent
                         break;
                 }
                 updateTitle();
-                presenter.getExpenses(selectedDate, selectedPeriod);
+                presenter.getExpenses(selectedDate, selectedPeriod,null,user);
             }
         });
 
@@ -154,9 +159,16 @@ public class ReportFragment extends BaseMvpFragment<StatisticView, ReportPresent
         adapter = new ReportAdapter();
 
         recyclerView.setAdapter(adapter);
-        presenter.getExpenses(selectedDate, selectedPeriod);
+        presenter.getExpenses(selectedDate, selectedPeriod,null,user);
+        String not;
+        if (user==null) {
+        not="nada";
+        } else {
+            not=user;
+        }
+        Log.e("reportfor",not);
 
-        adapter.setOnItemClickListener((category, report) -> goToExpensesList(selectedDate, selectedPeriod, category.getId()));
+        adapter.setOnItemClickListener((category, report) -> goToExpensesList(selectedDate, selectedPeriod, category.getId(),user));
 
         ////////////
         ////////////
@@ -194,13 +206,14 @@ public class ReportFragment extends BaseMvpFragment<StatisticView, ReportPresent
     }
 
     public void goToExpensesList(Date date, int selectedPeriod) {
-        this.goToExpensesList(date, selectedPeriod, null);
+        this.goToExpensesList(date, selectedPeriod, null,null);
     }
 
-    public void goToExpensesList(Date date, int selectedPeriod, String category) {
+    public void goToExpensesList(Date date, int selectedPeriod, String category, String user) {
         date = DateUtils.fillCurrentTime(date);
         Date startDate = date;
         Date endDate = date;
+
 
         switch (selectedPeriod) {
             case ReportFragment.PERIOD_DAY:
@@ -216,6 +229,6 @@ public class ReportFragment extends BaseMvpFragment<StatisticView, ReportPresent
                 endDate = DateUtils.getMonthEnd(date);
                 break;
         }
-        Navigator.goToExpensesList(getActivity(), startDate, endDate, category);
+        Navigator.goToExpensesList(getActivity(), startDate, endDate, category, user);
     }
 }

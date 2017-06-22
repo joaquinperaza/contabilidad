@@ -40,7 +40,7 @@ public class CategoryFirebaseSource implements CategoryDataSource {
     @Override
     public Observable<List<Category>> getAll() {
         return Observable.create(subscriber -> {
-            mDatabase.child("users").child(currentUser.getId()).child("categories").orderByChild("order")
+            mDatabase.child("categories").orderByChild("order")
                     .addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
@@ -70,7 +70,7 @@ public class CategoryFirebaseSource implements CategoryDataSource {
 
     protected Observable<CategoryDto> getDtoById(String id) {
         return Observable.create(subscriber -> {
-            mDatabase.child("users").child(currentUser.getId()).child("categories").child(id)
+            mDatabase.child("categories").child(id)
                     .addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
@@ -95,7 +95,7 @@ public class CategoryFirebaseSource implements CategoryDataSource {
                 childUpdates.put(c.getId() + "/order", c.getOrder());
             }
 
-            DatabaseReference categoriesRef = mDatabase.child("users").child(currentUser.getId()).child("categories");
+            DatabaseReference categoriesRef = mDatabase.child("categories");
             categoriesRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -117,7 +117,7 @@ public class CategoryFirebaseSource implements CategoryDataSource {
         Observable<Category> saveCategory = Observable.create(subscriber -> {
             String key = category.getId();
             if (TextUtils.isEmpty(key)) {
-                key = mDatabase.child("users").child(currentUser.getId()).child("categories").push().getKey();
+                key = mDatabase.child("categories").push().getKey();
                 category.setId(key);
             }
 
@@ -130,8 +130,7 @@ public class CategoryFirebaseSource implements CategoryDataSource {
             childUpdates.put("order", category.getOrder());
 
             DatabaseReference dbRef = mDatabase
-                    .child("users")
-                    .child(currentUser.getId())
+
                     .child("categories").child(key);
 
             dbRef.addValueEventListener(new ValueEventListener() {
@@ -158,8 +157,7 @@ public class CategoryFirebaseSource implements CategoryDataSource {
     @Override
     public Observable<Category> remove(Category category) {
         final Observable<Category> deleteCategory = Observable.create(subscriber -> {
-            DatabaseReference catReference = mDatabase.child("users").child(currentUser.getId())
-                    .child("categories").child(category.getId());
+            DatabaseReference catReference = mDatabase.child("categories").child(category.getId());
             catReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {

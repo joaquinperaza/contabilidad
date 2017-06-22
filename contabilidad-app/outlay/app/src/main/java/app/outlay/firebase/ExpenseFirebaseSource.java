@@ -1,6 +1,7 @@
 package app.outlay.firebase;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -48,7 +49,7 @@ public class ExpenseFirebaseSource implements ExpenseDataSource {
         mDatabase = databaseReference;
         adapter = new ExpenseAdapter();
     }
-    
+
 
 
     @Override
@@ -90,9 +91,58 @@ public class ExpenseFirebaseSource implements ExpenseDataSource {
     }
 
     @Override
-    public Observable<List<Expense>> getExpenses(Date startDate, Date endDate, String categoryId) {
-        final Observable<List<Expense>> listObservable = Observable.create(subscriber -> {
-            DatabaseReference databaseReference = mDatabase.child("users").child(currentUser.getId()).child("expenses");
+    public Observable<Expense> updateExpense(Expense expense) {
+        return Observable.create(subscriber -> {
+            String key = expense.getId();
+            if (TextUtils.isEmpty(key)) {
+                key = mDatabase.child("users")
+
+                        .child(currentUser.getId())
+                        .child("expenses")
+
+                        .child(DateUtils.toYearMonthString(expense.getReportedWhen()))
+                        .push().getKey();
+                expense.setId(key);
+            }
+
+            ExpenseDto expenseDto = adapter.fromExpense(expense);
+
+            DatabaseReference databaseReference = mDatabase.child("users")
+                    .child(currentUser.getId())
+                    .child("expenses")
+
+                    .child(DateUtils.toYearMonthString(expense.getReportedWhen()))
+                    .child(key);
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    subscriber.onNext(expense);
+                    subscriber.onCompleted();
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    subscriber.onError(databaseError.toException());
+                }
+            });
+            databaseReference.setValue(expenseDto);
+        });
+    }
+
+    @Override
+    public Observable<List<Expense>> getExpenses(Date startDate, Date endDate, String categoryId, String user) {
+        if (user==null){user=currentUser.getId();}
+
+        DatabaseReference databaseReference = mDatabase.child("users").child(user).child("expenses");
+
+        String categoria;
+        if (categoryId==null){categoria="nocar";}
+        else {categoria=categoryId;}
+        Log.e("querying", user+DateUtils.toYearMonthString(startDate)+DateUtils.toYearMonthString(endDate));
+        Log.e("cat", categoria);
+
+         Observable<List<Expense>> listObservable = Observable.create(subscriber -> {
+
             Query query = databaseReference.orderByKey();
             query = query.startAt(DateUtils.toYearMonthString(startDate)).endAt(DateUtils.toYearMonthString(endDate));
             query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -104,7 +154,7 @@ public class ExpenseFirebaseSource implements ExpenseDataSource {
                             ExpenseDto expenseDto = expensesSnapshot.getValue(ExpenseDto.class);
                             if (!TextUtils.isEmpty(categoryId) && !expenseDto.getCategoryId().equals(categoryId)) {
                                 continue;
-                            }
+                           }
                             expenses.add(adapter.toExpense(expenseDto));
                         }
                     }
@@ -149,7 +199,9 @@ public class ExpenseFirebaseSource implements ExpenseDataSource {
 
     @Override
     public Observable<List<Expense>> getExpenses(Date startDate, Date endDate) {
-        return getExpenses(startDate, endDate, null);
+        Log.e("querying", "nulluser");
+        return getExpenses(startDate, endDate, null,null);
+
     }
 
     @Override

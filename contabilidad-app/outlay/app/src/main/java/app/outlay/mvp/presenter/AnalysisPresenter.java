@@ -42,7 +42,7 @@ public class AnalysisPresenter extends MvpBasePresenter<AnalysisView> {
 
     public void getExpenses(Date startDate, Date endDate, Category category) {
         getExpensesUseCase.execute(
-                new GetExpensesUseCase.Input(startDate, endDate, category.getId()),
+                new GetExpensesUseCase.Input(startDate, endDate, category.getId(),null),
                 new DefaultSubscriber<Report>() {
                     @Override
                     public void onNext(Report report) {

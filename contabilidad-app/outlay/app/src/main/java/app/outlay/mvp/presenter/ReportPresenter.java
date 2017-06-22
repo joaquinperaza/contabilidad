@@ -5,6 +5,7 @@ import app.outlay.core.executor.DefaultSubscriber;
 import app.outlay.core.utils.DateUtils;
 import app.outlay.domain.interactor.GetExpensesUseCase;
 import app.outlay.domain.model.Report;
+import app.outlay.domain.model.User;
 import app.outlay.mvp.view.StatisticView;
 import app.outlay.view.fragment.ReportFragment;
 
@@ -25,7 +26,7 @@ public class ReportPresenter extends MvpBasePresenter<StatisticView> {
         this.loadReportUseCase = loadReportUseCase;
     }
 
-    public void getExpenses(Date date, int period) {
+    public void getExpenses(Date date, int period,String category, String user) {
         Date startDate = date;
         Date endDate = date;
 
@@ -45,11 +46,12 @@ public class ReportPresenter extends MvpBasePresenter<StatisticView> {
         }
 
 
-        loadReportUseCase.execute(new GetExpensesUseCase.Input(startDate, endDate, null), new DefaultSubscriber<Report>() {
+        loadReportUseCase.execute(new GetExpensesUseCase.Input(startDate, endDate, category, user), new DefaultSubscriber<Report>() {
             @Override
             public void onNext(Report report) {
                 super.onNext(report);
                 getView().showReport(report);
+
             }
         });
     }
