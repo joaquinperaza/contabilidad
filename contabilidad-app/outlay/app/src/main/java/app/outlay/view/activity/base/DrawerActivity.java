@@ -100,6 +100,7 @@ try {
             if (o.toString().hashCode() > 1 || o.toString().hashCode() < -1) {
 
                 items.add(new PrimaryDrawerItem().withName(o.toString()).withIcon(MaterialDesignIconic.Icon.gmi_graphic_eq).withIdentifier(10 + i2));
+                Log.e("msg", "anadido");
                 users.add(i2, o.toString());
                 i2++;
             }
