@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:249983775892:android:95649c21a8bc6266",
         "android_client_info": {
-          "package_name": "app.outlay"
+          "package_name": "app.peraza"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "249983775892-nsdq0pv3ppsn4optpva6olfti02vpl49.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "app.outlay",
+            "package_name": "app.peraza",
             "certificate_hash": "6db8b566901f014d7a30b1533cde8885673add98"
           }
         },

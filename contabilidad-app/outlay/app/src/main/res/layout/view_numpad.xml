@@ -8,7 +8,7 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <app.outlay.view.numpad.NumpadButton
+        <app.peraza.view.numpad.NumpadButton
             android:id="@+id/btn1"
             style="?attr/numpadButton"
             android:layout_width="match_parent"
@@ -16,7 +16,7 @@
             android:layout_weight="1"
             app:numpadButtonText="1" />
 
-        <app.outlay.view.numpad.NumpadButton
+        <app.peraza.view.numpad.NumpadButton
             android:id="@+id/btn2"
             style="?attr/numpadButton"
             android:layout_width="match_parent"
@@ -24,7 +24,7 @@
             android:layout_weight="1"
             app:numpadButtonText="2" />
 
-        <app.outlay.view.numpad.NumpadButton
+        <app.peraza.view.numpad.NumpadButton
             android:id="@+id/btn3"
             style="?attr/numpadButton"
             android:layout_width="match_parent"
@@ -39,7 +39,7 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <app.outlay.view.numpad.NumpadButton
+        <app.peraza.view.numpad.NumpadButton
             android:id="@+id/btn4"
             style="?attr/numpadButton"
             android:layout_width="match_parent"
@@ -47,7 +47,7 @@
             android:layout_weight="1"
             app:numpadButtonText="4" />
 
-        <app.outlay.view.numpad.NumpadButton
+        <app.peraza.view.numpad.NumpadButton
             android:id="@+id/btn5"
             style="?attr/numpadButton"
             android:layout_width="match_parent"
@@ -55,7 +55,7 @@
             android:layout_weight="1"
             app:numpadButtonText="5" />
 
-        <app.outlay.view.numpad.NumpadButton
+        <app.peraza.view.numpad.NumpadButton
             android:id="@+id/btn6"
             style="?attr/numpadButton"
             android:layout_width="match_parent"
@@ -70,7 +70,7 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <app.outlay.view.numpad.NumpadButton
+        <app.peraza.view.numpad.NumpadButton
             android:id="@+id/btn7"
             style="?attr/numpadButton"
             android:layout_width="match_parent"
@@ -78,7 +78,7 @@
             android:layout_weight="1"
             app:numpadButtonText="7" />
 
-        <app.outlay.view.numpad.NumpadButton
+        <app.peraza.view.numpad.NumpadButton
             android:id="@+id/btn8"
             style="?attr/numpadButton"
             android:layout_width="match_parent"
@@ -86,7 +86,7 @@
             android:layout_weight="1"
             app:numpadButtonText="8" />
 
-        <app.outlay.view.numpad.NumpadButton
+        <app.peraza.view.numpad.NumpadButton
             android:id="@+id/btn9"
             style="?attr/numpadButton"
             android:layout_width="match_parent"
@@ -101,7 +101,7 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <app.outlay.view.numpad.NumpadButton
+        <app.peraza.view.numpad.NumpadButton
             android:id="@+id/btnDecimal"
             style="?attr/numpadButton"
             android:layout_width="match_parent"
@@ -109,7 +109,7 @@
             android:layout_weight="1"
             app:numpadButtonText="$USD" />
 
-        <app.outlay.view.numpad.NumpadButton
+        <app.peraza.view.numpad.NumpadButton
             android:id="@+id/btn0"
             style="?attr/numpadButton"
             android:layout_width="match_parent"
@@ -117,7 +117,7 @@
             android:layout_weight="1"
             app:numpadButtonText="0" />
 
-        <app.outlay.view.numpad.NumpadButton
+        <app.peraza.view.numpad.NumpadButton
             style="?attr/numpadButton"
             android:id="@+id/btnClear"
             android:layout_width="match_parent"

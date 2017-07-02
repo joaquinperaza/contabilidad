@@ -2,7 +2,7 @@
 
 ext {
     configuration = [
-            package             : "app.outlay",
+            package             : "app.peraza",
             buildToolsVersion   : "25.0.3",
             compileVersion      : 25,
             minSdk              : 21,
