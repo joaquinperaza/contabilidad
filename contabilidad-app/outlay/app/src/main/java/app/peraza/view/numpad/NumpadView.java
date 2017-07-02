@@ -225,10 +225,12 @@ try {
                     textAfter= str.substring(2,str.length());
                     textBefore = str.substring(0,2);
                 }
-                String finaltxtafter = textAfter.replace(",","");
+                String finaltxtafter = textAfter.replace(".","");
                 Integer number = Integer.valueOf(finaltxtafter);
 
-                String str2 = textBefore.concat(String.format("%,d", number));
+                String str3 = textBefore.concat(String.format("%,d", number));
+                String str2 = str3.replaceAll(",",".");
+
                 Log.e("tryadded", str2);
                 if (validator.valid(str2,curr)){
                     Log.e("added", str2);

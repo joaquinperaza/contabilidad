@@ -141,6 +141,7 @@ public class ExpenseFirebaseSource implements ExpenseDataSource {
         Log.e("querying", user+DateUtils.toYearMonthString(startDate)+DateUtils.toYearMonthString(endDate));
         Log.e("cat", categoria);
 
+
          Observable<List<Expense>> listObservable = Observable.create(subscriber -> {
 
             Query query = databaseReference.orderByKey();
@@ -200,7 +201,8 @@ public class ExpenseFirebaseSource implements ExpenseDataSource {
     @Override
     public Observable<List<Expense>> getExpenses(Date startDate, Date endDate) {
         Log.e("querying", "nulluser");
-        return getExpenses(startDate, endDate, null,null);
+
+        return getExpenses(startDate, endDate, null,currentUser.getId());
 
     }
 

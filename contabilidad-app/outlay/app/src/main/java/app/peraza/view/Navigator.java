@@ -70,6 +70,9 @@ public final class Navigator {
         }
         if (user!=null) {
             b.putString(ExpensesListFragment.ARG_USR, user);
+        } else {
+
+
         }
         changeFragment(activityFrom, ExpensesListFragment.class, b);
     }

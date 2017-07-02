@@ -19,7 +19,7 @@ public class SimpleNumpadValidator implements NumpadValidator {
                 } else {
                 textAfter= value.substring(2,value.length());
                 }
-            String finaltxt = textAfter.replace(",","");
+            String finaltxt = textAfter.replace(".","");
             Double.valueOf(finaltxt);
             return true;
         } catch (Exception e) {

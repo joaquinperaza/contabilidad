@@ -224,10 +224,11 @@ public class ExpensesDetailsFragment extends BaseMvpFragment<ExpenseDetailsView,
             if(e.getCotizado()!=null) {
                 String mystring = String.valueOf((int) ((double) Double.valueOf(NumberUtils.formatAmount(e.getAmount()))*Double.valueOf(e.getCotizado())));
 
-                Log.e("test", mystring);
+
                 cot.setText("Monto origen: $"+mystring+" Cotizacion: "+e.getCotizado());}
             categoryTitle.setText(e.getCategory().getTitle());
-            amount.setText(NumberUtils.formatAmount(e.getAmount()));
+            BigDecimal var2 =e.getAmount();
+            amount.setText(NumberUtils.formatAmount(var2));
             note.setText(e.getNote());
 
             setDateStr(expense.getReportedWhen());
@@ -241,7 +242,7 @@ public class ExpensesDetailsFragment extends BaseMvpFragment<ExpenseDetailsView,
         if (selectedCategory != null) {
             expense.setCategory(selectedCategory);
         }
-        String amountStr = amount.getText().toString().replaceAll(",", ".");
+        String amountStr = amount.getText().toString().replaceAll(",",".");
         expense.setAmount(new BigDecimal(amountStr));
         expense.setNote(note.getText().toString());
         return expense;
@@ -269,7 +270,8 @@ public class ExpensesDetailsFragment extends BaseMvpFragment<ExpenseDetailsView,
             amountInputLayout.requestFocus();
             result = false;
         } else {
-            String amountStr = amount.getText().toString().replaceAll(",", ".");
+            String amountStr = amount.getText().toString().replaceAll(",",".");
+            Log.e("bd",amountStr);
             BigDecimal number = new BigDecimal(amountStr);
             if (number.compareTo(BigDecimal.ZERO) <= 0) {
                 amountInputLayout.setError(getString(app.peraza.R.string.error_amount_invalid));

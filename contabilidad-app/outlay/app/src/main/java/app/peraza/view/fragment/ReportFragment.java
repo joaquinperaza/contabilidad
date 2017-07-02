@@ -110,12 +110,14 @@ public class ReportFragment extends BaseMvpFragment<StatisticView, ReportPresent
                     selectedDate = selected;
                     ReportFragment.this.setTitle(DateUtils.toShortString(selected));
                     updateTitle();
+
                     presenter.getExpenses(selectedDate, selectedPeriod,null,user);
                 });
                 datePickerFragment.show(getChildFragmentManager(), "datePicker");
                 break;
             case app.peraza.R.id.action_list:
                 analytics().trackViewExpensesList();
+
                 goToExpensesList(selectedDate, selectedPeriod,null,user);
         }
         return super.onOptionsItemSelected(item);
@@ -151,6 +153,7 @@ public class ReportFragment extends BaseMvpFragment<StatisticView, ReportPresent
                         break;
                 }
                 updateTitle();
+
                 presenter.getExpenses(selectedDate, selectedPeriod,null,user);
             }
         });
@@ -178,6 +181,7 @@ public class ReportFragment extends BaseMvpFragment<StatisticView, ReportPresent
     @Override
     public void showReport(Report report) {
         if (report.isEmpty()) {
+
             noResults.setVisibility(View.VISIBLE);
             Log.e("norep","norep");
         } else {
@@ -229,6 +233,7 @@ public class ReportFragment extends BaseMvpFragment<StatisticView, ReportPresent
                 endDate = DateUtils.getMonthEnd(date);
                 break;
         }
+        if (user==null){getArguments().getString("primaryU");}
         Navigator.goToExpensesList(getActivity(), startDate, endDate, category, user);
     }
 }

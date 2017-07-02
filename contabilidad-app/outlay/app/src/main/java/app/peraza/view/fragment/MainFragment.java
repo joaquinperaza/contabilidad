@@ -159,6 +159,7 @@ public class MainFragment extends BaseMvpFragment<EnterExpenseView, EnterExpense
         adapter = new CategoriesGridAdapter();
         categoriesGrid.setAdapter(adapter);
 
+
         adapter.attachNumpadEditable(new NumpadEditable() {
             @Override
             public String getText() {
@@ -207,10 +208,10 @@ public class MainFragment extends BaseMvpFragment<EnterExpenseView, EnterExpense
         //double cotizacion=30;
         if (curr.contains("$")){
             e.setMoneda("pesos");
-            return curr.substring(2,curr.length()).replace(",","");
+            return curr.substring(2,curr.length()).replace(".","");
         } else if (curr.contains("USD")){
             e.setMoneda("usd");
-            return curr.substring(4,curr.length()).replace(",","");
+            return curr.substring(4,curr.length()).replace(".","");
         }
         return "0";
 
@@ -269,6 +270,8 @@ public class MainFragment extends BaseMvpFragment<EnterExpenseView, EnterExpense
     public void showCategories(List<Category> categoryList) {
         adapter.setItems(categoryList);
         addCategory.setVisibility(categoryList.isEmpty() ? View.VISIBLE : View.GONE);
+
+
     }
 
     @Override

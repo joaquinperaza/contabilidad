@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ import app.peraza.view.Navigator;
 import app.peraza.view.adapter.ExpenseAdapter;
 import app.peraza.view.adapter.ListExpensesAdapter;
 import app.peraza.view.fragment.base.BaseMvpFragment;
+import app.peraza.impl.AppPreferences;
 
 import java.util.Date;
 import java.util.List;
@@ -86,8 +88,13 @@ public class ExpensesListFragment extends BaseMvpFragment<ExpensesView, Expenses
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getApp().getUserComponent().inject(this);
-        user= getArguments().getString(ReportFragment.setUser);
-        //Log.e("ondetoy",user);
+
+        user= getArguments().getString(ARG_USR);
+        if (user==null){
+            user = getArguments().getString("primaryU");
+
+        }
+//        Log.e("ondetoy",user);
 
         long dateFromMillis = getArguments().getLong(ARG_DATE_FROM);
         long dateToMillis = getArguments().getLong(ARG_DATE_TO);

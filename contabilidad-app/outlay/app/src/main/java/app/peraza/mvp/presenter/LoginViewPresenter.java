@@ -12,6 +12,7 @@ import app.peraza.domain.interactor.UserSignUpUseCase;
 import app.peraza.domain.model.Credentials;
 import app.peraza.domain.model.User;
 import app.peraza.mvp.view.LoginView;
+import app.peraza.impl.AppPreferences;
 
 import javax.inject.Inject;
 
@@ -96,6 +97,7 @@ public class LoginViewPresenter extends MvpBasePresenter<LoginView> {
 
     public void trySignIn() {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
         if (firebaseUser != null) {
             User user = new User();
             user.setId(firebaseUser.getUid());
@@ -107,7 +109,9 @@ public class LoginViewPresenter extends MvpBasePresenter<LoginView> {
     }
 
     private void onAuthSuccess(User user) {
+
         getView().onSuccess(user);
+
     }
 
     public void resetPassword(String email) {

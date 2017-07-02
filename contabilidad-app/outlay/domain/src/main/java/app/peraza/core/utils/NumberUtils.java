@@ -2,6 +2,8 @@ package app.peraza.core.utils;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 /**
  * Created by Bogdan Melnychuk on 2/10/16.
@@ -12,6 +14,7 @@ public final class NumberUtils {
     }
 
     public static String formatAmount(BigDecimal amount) {
-        return new DecimalFormat("#0.00").format(amount);
+        return NumberFormat.getNumberInstance(Locale.US).format(amount);
+
     }
 }

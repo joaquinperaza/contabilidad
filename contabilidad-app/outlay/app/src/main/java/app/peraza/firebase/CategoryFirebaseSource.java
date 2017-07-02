@@ -33,6 +33,7 @@ public class CategoryFirebaseSource implements CategoryDataSource {
             DatabaseReference databaseReference
     ) {
         this.currentUser = currentUser;
+
         mDatabase = databaseReference;
         adapter = new CategoryAdapter();
     }
@@ -40,6 +41,7 @@ public class CategoryFirebaseSource implements CategoryDataSource {
     @Override
     public Observable<List<Category>> getAll() {
         return Observable.create(subscriber -> {
+
             mDatabase.child("categories").orderByChild("order")
                     .addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override

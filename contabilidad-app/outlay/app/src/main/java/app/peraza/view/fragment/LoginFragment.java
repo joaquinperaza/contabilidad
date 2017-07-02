@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import app.peraza.di.component.UserComponent;
 import app.peraza.domain.model.User;
 import app.peraza.mvp.presenter.LoginViewPresenter;
 import app.peraza.mvp.view.LoginView;
@@ -81,7 +82,9 @@ public class LoginFragment extends BaseMvpFragment<LoginView, LoginViewPresenter
 
     @Override
     public void onSuccess(User user) {
+
         getApp().createUserComponent(user);
+
         Navigator.goToMainScreen(getActivity());
         getActivity().finish();
     }
