@@ -60,7 +60,7 @@ public class LoginFragment extends BaseMvpFragment<LoginView, LoginViewPresenter
             analytics().trackEmailSignIn();
             presenter.signIn(email, password);
         });
-        loginForm.setOnPasswordForgetClick(() -> presenter.resetPassword("melnychuk.bogdan@gmail.com"));
+        loginForm.setOnPasswordForgetClick(() -> presenter.resetPassword("joaquin@peraza.uy"));
         loginForm.setOnSkipButtonClick(v -> {
             analytics().trackGuestSignIn();
             presenter.signInGuest();
