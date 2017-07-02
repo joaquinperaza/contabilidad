@@ -182,6 +182,7 @@ public class MainFragment extends BaseMvpFragment<EnterExpenseView, EnterExpense
                 }
 
                 Log.e("ampunt",amountText.toString());
+
                 e.setAmount(new BigDecimal(parsemoney(amountText.getText().toString(),e)));
                 e.setReportedWhen(selectedDate);
                 analytics().trackExpenseCreated(e);
@@ -208,10 +209,10 @@ public class MainFragment extends BaseMvpFragment<EnterExpenseView, EnterExpense
         //double cotizacion=30;
         if (curr.contains("$")){
             e.setMoneda("pesos");
-            return curr.substring(2,curr.length());
+            return curr.substring(2,curr.length()).replace(",","");
         } else if (curr.contains("USD")){
             e.setMoneda("usd");
-            return curr.substring(4,curr.length());
+            return curr.substring(4,curr.length()).replace(",","");
         }
         return "0";
 

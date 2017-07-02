@@ -21,7 +21,8 @@ public class SimpleNumpadValidator implements NumpadValidator {
                 } else {
                 textAfter= value.substring(2,value.length());
                 }
-            Double.valueOf(textAfter);
+            String finaltxt = textAfter.replace(",","");
+            Double.valueOf(finaltxt);
             return true;
         } catch (Exception e) {
             return false;

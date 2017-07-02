@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -216,7 +217,24 @@ try {
         if(useValidator && validator != null) {
             String curr= new AppPreferences(getContext()).getCurrency();
             if (validator.valid(str,curr)) {
-                attachedEditable.setText(str);
+                String textAfter;
+                String textBefore;
+                if (curr.equals("a")){
+                    textAfter= str.substring(4,str.length());
+                    textBefore = str.substring(0,4);
+                } else {
+                    textAfter= str.substring(2,str.length());
+                    textBefore = str.substring(0,2);
+                }
+                String finaltxtafter = textAfter.replace(",","");
+                Integer number = Integer.valueOf(finaltxtafter);
+
+                String str2 = textBefore.concat(String.format("%,d", number));
+                Log.e("tryadded", str2);
+                if (validator.valid(str2,curr)){
+                    Log.e("added", str2);
+                attachedEditable.setText(str2);}
+
             } else {
 
                 validator.onInvalidInput(str);
@@ -241,6 +259,7 @@ try {
             }
         } else {
             attachedEditable.setText(str);
+            Log.e("added2", str);
         }
     }
 }
