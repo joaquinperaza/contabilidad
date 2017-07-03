@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import app.peraza.R;
@@ -29,6 +30,9 @@ public class NumpadView extends LinearLayout implements View.OnClickListener {
     private NumpadClickListener numpadClickListener;
     private NumpadEditable attachedEditable;
     private NumpadValidator validator;
+    LayoutInflater inflater;
+
+    View parent;
 
     public NumpadView(Context context) {
         super(context);
@@ -53,8 +57,8 @@ public class NumpadView extends LinearLayout implements View.OnClickListener {
 
     private void init() {
         setOrientation(VERTICAL);
-        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View parent = inflater.inflate(app.peraza.R.layout.view_numpad, this, true);
+        inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        parent = inflater.inflate(app.peraza.R.layout.view_numpad, this, true);
 
         parent.findViewById(app.peraza.R.id.btn1).setOnClickListener(this);
         parent.findViewById(app.peraza.R.id.btn2).setOnClickListener(this);
@@ -179,7 +183,16 @@ try {
             new AppPreferences(getContext()).setCurrency(newC);
             String label;
 
-            if (newC.equals("a")){label= getContext().getString(R.string.label_currencya);} else {label= getContext().getString(R.string.label_currencyb);}
+
+            NumpadButton dec = (NumpadButton) parent.findViewById(R.id.btnDecimal);
+            if (newC.equals("a")){
+                label= getContext().getString(R.string.label_currencya);
+                dec.textValue.setText("$");
+            } else {
+                label= getContext().getString(R.string.label_currencyb);
+                dec.textValue.setText("USD");
+            }
+
 
 
             updateAttachedView(label+textAfter);

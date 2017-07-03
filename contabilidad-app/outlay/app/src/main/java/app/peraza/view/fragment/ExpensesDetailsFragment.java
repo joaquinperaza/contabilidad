@@ -222,7 +222,7 @@ public class ExpensesDetailsFragment extends BaseMvpFragment<ExpenseDetailsView,
             selectedCategory = e.getCategory();
             loadCategoryIcon(selectedCategory);
             if(e.getCotizado()!=null) {
-                String mystring = String.valueOf((int) ((double) Double.valueOf(NumberUtils.formatAmount(e.getAmount()))*Double.valueOf(e.getCotizado())));
+                String mystring = NumberUtils.formatAmount(e.getAmount().floatValue()*Double.valueOf(e.getCotizado()));
 
 
                 cot.setText("Monto origen: $"+mystring+" Cotizacion: "+e.getCotizado());}

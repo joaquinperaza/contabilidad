@@ -2,6 +2,7 @@ package app.peraza.core.utils;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.util.Locale;
 
@@ -10,11 +11,14 @@ import java.util.Locale;
  */
 public final class NumberUtils {
     public static String formatAmount(Double amount) {
-        return String.format("%.2f", amount);
+        return String.format("%.0f", amount);
     }
 
     public static String formatAmount(BigDecimal amount) {
-        return NumberFormat.getNumberInstance(Locale.US).format(amount);
+        DecimalFormatSymbols simbolos = new DecimalFormatSymbols();
+        simbolos.setDecimalSeparator('.');
+        DecimalFormat formateador = new DecimalFormat("###.#",simbolos);
+        return formateador.format(amount);
 
     }
 }
