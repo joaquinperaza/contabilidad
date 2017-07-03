@@ -21,6 +21,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.ContentViewEvent;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
@@ -152,6 +154,9 @@ public class MainFragment extends BaseMvpFragment<EnterExpenseView, EnterExpense
         ((DrawerActivity) getActivity()).setupDrawer(currentUser);
 
         initStaticContent();
+        // TODO: Use your own attributes to track content views in your app
+
+
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 4);
         gridLayoutManager.setSpanSizeLookup(onSpanSizeLookup);

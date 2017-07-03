@@ -2,6 +2,7 @@ package app.peraza;
 
 import android.app.Application;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
@@ -16,6 +17,7 @@ import app.peraza.di.module.UserModule;
 import app.peraza.domain.model.User;
 import app.peraza.firebase.dto.adapter.UserAdapter;
 import app.peraza.impl.AndroidLogger;
+import io.fabric.sdk.android.Fabric;
 
 /**
  * Created by Bogdan Melnychuk on 1/15/16.
@@ -27,6 +29,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
         initializeInjector();
         LoggerFactory.registerLogger(new AndroidLogger());
 

@@ -3,6 +3,8 @@ package app.peraza.firebase;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.ContentViewEvent;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -65,6 +67,11 @@ public class ExpenseFirebaseSource implements ExpenseDataSource {
                         .push().getKey();
                 expense.setId(key);
             }
+            Answers.getInstance().logContentView(new ContentViewEvent()
+                    .putContentName("Add expense")
+                    .putContentType("Event")
+                    .putContentId("002")
+                    .putCustomAttribute("user", currentUser.getId()));
 
             ExpenseDto expenseDto = adapter.fromExpense(expense);
 
@@ -104,7 +111,11 @@ public class ExpenseFirebaseSource implements ExpenseDataSource {
                         .push().getKey();
                 expense.setId(key);
             }
-
+            Answers.getInstance().logContentView(new ContentViewEvent()
+                    .putContentName("Changed expense")
+                    .putContentType("Event")
+                    .putContentId("003")
+                    .putCustomAttribute("user", currentUser.getId()));
             ExpenseDto expenseDto = adapter.fromExpense(expense);
 
             DatabaseReference databaseReference = mDatabase.child("users")
@@ -134,6 +145,12 @@ public class ExpenseFirebaseSource implements ExpenseDataSource {
         if (user==null){user=currentUser.getId();}
 
         DatabaseReference databaseReference = mDatabase.child("users").child(user).child("expenses");
+        Answers.getInstance().logContentView(new ContentViewEvent()
+                .putContentName("Get expense")
+                .putContentType("Event")
+                .putContentId("001")
+                .putCustomAttribute("user", currentUser.getId())
+                .putCustomAttribute("userfrom", user));
 
         String categoria;
         if (categoryId==null){categoria="nocar";}
@@ -239,6 +256,11 @@ public class ExpenseFirebaseSource implements ExpenseDataSource {
 
     @Override
     public Observable<Expense> remove(Expense expense) {
+        Answers.getInstance().logContentView(new ContentViewEvent()
+                .putContentName("Remove expense")
+                .putContentType("Event")
+                .putContentId("004")
+                .putCustomAttribute("user", currentUser.getId()));
         return Observable.create(subscriber -> {
 
             DatabaseReference expenseRef = mDatabase.child("users")
