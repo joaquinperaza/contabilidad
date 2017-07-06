@@ -5,6 +5,8 @@ import android.util.Log;
 
 import com.crashlytics.android.answers.Answers;
 import com.crashlytics.android.answers.ContentViewEvent;
+import com.crashlytics.android.answers.PurchaseEvent;
+import com.crashlytics.android.answers.SearchEvent;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,7 +21,9 @@ import app.peraza.domain.model.User;
 import app.peraza.firebase.dto.ExpenseDto;
 import app.peraza.firebase.dto.adapter.ExpenseAdapter;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Currency;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -67,11 +71,21 @@ public class ExpenseFirebaseSource implements ExpenseDataSource {
                         .push().getKey();
                 expense.setId(key);
             }
-            Answers.getInstance().logContentView(new ContentViewEvent()
-                    .putContentName("Add expense")
-                    .putContentType("Event")
-                    .putContentId("002")
-                    .putCustomAttribute("user", currentUser.getId()));
+            String currency;
+            if(expense.getMoneda().equals("usd")){
+              currency="USD";
+            }else{
+                currency="UYU";
+            }
+
+
+            Answers.getInstance().logPurchase(new PurchaseEvent()
+                    .putItemPrice(expense.getAmount())
+                    .putCurrency(Currency.getInstance(currency))
+                    .putItemName(expense.getNote())
+                    .putItemType(expense.getCategory().getTitle())
+                    .putSuccess(true));
+
 
             ExpenseDto expenseDto = adapter.fromExpense(expense);
 
@@ -145,19 +159,16 @@ public class ExpenseFirebaseSource implements ExpenseDataSource {
         if (user==null){user=currentUser.getId();}
 
         DatabaseReference databaseReference = mDatabase.child("users").child(user).child("expenses");
-        Answers.getInstance().logContentView(new ContentViewEvent()
-                .putContentName("Get expense")
-                .putContentType("Event")
-                .putContentId("001")
-                .putCustomAttribute("user", currentUser.getId())
-                .putCustomAttribute("userfrom", user));
+
+
+        Answers.getInstance().logSearch(new SearchEvent()
+                .putQuery(user)
+                .putCustomAttribute("userfrom", currentUser.getId()));
+
 
         String categoria;
         if (categoryId==null){categoria="nocar";}
         else {categoria=categoryId;}
-        Log.e("querying", user+DateUtils.toYearMonthString(startDate)+DateUtils.toYearMonthString(endDate));
-        Log.e("cat", categoria);
-
 
          Observable<List<Expense>> listObservable = Observable.create(subscriber -> {
 

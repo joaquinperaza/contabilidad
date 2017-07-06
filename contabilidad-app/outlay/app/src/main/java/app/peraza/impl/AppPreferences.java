@@ -37,7 +37,7 @@ public class AppPreferences {
     }
 
     private int getInt(String key) {
-        return getPreferences().getInt(key, 1);
+        return getPreferences().getInt(key, 0);
     }
 
     private void putBoolean(String key, boolean value) {

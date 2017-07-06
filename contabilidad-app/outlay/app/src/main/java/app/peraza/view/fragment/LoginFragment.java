@@ -6,6 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.LoginEvent;
+
 import app.peraza.di.component.UserComponent;
 import app.peraza.domain.model.User;
 import app.peraza.mvp.presenter.LoginViewPresenter;
@@ -82,7 +85,10 @@ public class LoginFragment extends BaseMvpFragment<LoginView, LoginViewPresenter
 
     @Override
     public void onSuccess(User user) {
-
+        Answers.getInstance().logLogin(new LoginEvent()
+                .putMethod("Email")
+                .putSuccess(true)
+                .putCustomAttribute("user", user.getId()));
         getApp().createUserComponent(user);
 
         Navigator.goToMainScreen(getActivity());
