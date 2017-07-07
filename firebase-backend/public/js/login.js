@@ -1,12 +1,18 @@
+var ususario;
+
+
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
-   
+   usuario=user;
+    
+        notify('Hola '+user.email+'!', 'inverse');
+      document.getElementById("userbanner").innerHTML = user.email;
+           
+       
   } else {
    redirect('auth.html');
   }
 });
-
-
 
 function redirect (url) {
     var ua        = navigator.userAgent.toLowerCase(),
@@ -26,3 +32,27 @@ function redirect (url) {
         window.location.href = url; 
     }
 }
+
+   function notify(message, type){
+        $.growl({
+            message: message
+        },{
+            type: type,
+            allow_dismiss: false,
+            label: 'Cancel',
+            className: 'btn-xs btn-inverse',
+            placement: {
+                from: 'top',
+                align: 'right'
+            },
+            delay: 2500,
+            animate: {
+                    enter: 'animated bounceIn',
+                    exit: 'animated bounceOut'
+            },
+            offset: {
+                x: 20,
+                y: 85
+            }
+        });
+    };

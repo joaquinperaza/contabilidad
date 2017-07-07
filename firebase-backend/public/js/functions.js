@@ -6,7 +6,7 @@
 (function(){
     //Get saved layout type from LocalStorage
     var layoutStatus = localStorage.getItem('ma-layout-status');
-    if (layoutStatus == 1) {
+    if (1) {
         $('body').addClass('sw-toggled');
         $('#tw-switch').prop('checked', true);
     }
@@ -563,9 +563,16 @@ $(document).ready(function(){
     //Date
     if ($('.date-picker')[0]) {
     	$('.date-picker').datetimepicker({
-    	    format: 'DD/MM/YYYY'
+    	    format: 'MM/DD/YYYY'
     	});
     }
+     if ($('.date-picker')[1]) {
+    	$('.date-picker').datetimepicker({
+    	    format: 'MM/DD/YYYY'
+    	});
+    }
+    
+
 
     /*
      * Form Wizard

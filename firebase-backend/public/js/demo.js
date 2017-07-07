@@ -24,7 +24,5 @@ $(document).ready(function(){
         });
     };
     
-    if (!$('.login-content')[0]) {
-        notify('Hola!', 'inverse');
-    } 
+   
 });

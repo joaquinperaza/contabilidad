@@ -8006,6 +8006,7 @@ button.close {
   clear: both;
 }
 
+
 .center-block {
   display: block;
   margin-left: auto;
@@ -8014,6 +8015,11 @@ button.close {
 
 .pull-right {
   float: right !important;
+}
+.pull-center {
+  float: left; !important;
+  position: relative;
+  left: 50%;
 }
 
 .pull-left {
