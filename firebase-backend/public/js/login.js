@@ -18,6 +18,16 @@ $( "#users" ).change(function() {
  document.getElementById("userbanner").innerHTML=$( "#users" ).val();
     getExpenses(document.getElementById("userbanner").innerHTML);
 });
+
+$(document).ready(function () {
+ var d= new Date();
+  d.setDate(d.getDate() - 7);
+ document.getElementById("epochfrom").value= (d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();
+document.getElementById("epochto").value= (new Date().getMonth()+1)+'/'+new Date().getDate()+'/'+new Date().getFullYear();
+     getExpenses(document.getElementById("userbanner").innerHTML);
+
+});
+
 var userslist=[];
 function getUser(){
         var query = firebase.database().ref("users").orderByKey();

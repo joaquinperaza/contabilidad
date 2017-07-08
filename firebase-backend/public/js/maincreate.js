@@ -78,7 +78,7 @@ function addexp(id) {
   note: document.getElementById("note").value+" WEB"
 });
         
-        var newmem2 = firebase.database().ref('users/weblog/' + newmem.key).push();
+        var newmem2 = firebase.database().ref('weblog/' + newmem.key).push();
     newmem2.set({
   amount: document.getElementById("monto").value,
   amountO: document.getElementById("monto").value,
@@ -226,6 +226,7 @@ function getCategory() {
                 // childData will be the actual contents of the child
 
             });
+         
          $('div.button').click(function () {
         addexp(this.id);
 

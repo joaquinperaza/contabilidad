@@ -126,6 +126,7 @@ function getCategory() {
                 // childData will be the actual contents of the child
 
             });
+        run();
             console.log(categories);
             return categories;
         });
@@ -204,10 +205,7 @@ function graficar(datos) {
         legend: {
              show: false
         },
-        grid: {
-            hoverable: true,
-            clickable: true
-        },
+        
         tooltip: true,
         tooltipOpts: {
             content: "%p.0%, %s", // show percentages, rounding to 2 decimal places
@@ -239,10 +237,7 @@ function graficar(datos) {
         legend: {
              show: false
         },
-        grid: {
-            hoverable: true,
-            clickable: true
-        },
+       
         tooltip: true,
         tooltipOpts: {
             content: "%p.0%, %s", // show percentages, rounding to 2 decimal places

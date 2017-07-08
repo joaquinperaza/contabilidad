@@ -120,6 +120,7 @@ function getCategory() {
 
             });
             console.log(categories);
+         getExpenses(document.getElementById("userbanner").innerHTML);
             return categories;
         });
 
