@@ -335,6 +335,24 @@ th {
   -moz-osx-font-smoothing: grayscale;
 }
 
+@font-face {
+    font-family: 'myFirstFont';
+    src: url('../fonts/font-outlay.ttf') format('truetype');
+}
+
+.outlayicone {
+    font-family: myFirstFont;
+    display: inline;
+    color: green;
+    font-size: 35px;
+}
+.outlayiconp {
+    font-family: myFirstFont;
+    display: inline;
+    color: red;
+    font-size: 35px;
+}
+
 .glyphicon-asterisk:before {
   content: "\2a";
 }
@@ -8020,6 +8038,17 @@ button.close {
   float: left; !important;
   position: relative;
   left: 50%;
+}
+
+.pull-center1 {
+  float: left; !important;
+  position: relative;
+  left: 45%;
+}
+.pull-center2 {
+  float: left; !important;
+  position: relative;
+  left: 40%;
 }
 
 .pull-left {

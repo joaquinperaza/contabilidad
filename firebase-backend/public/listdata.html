@@ -38,6 +38,7 @@
     
                 
                 
+                      
                    <li class="pull-center2">  
                 <select class="selectpicker" id="users">
                                       
@@ -48,6 +49,7 @@
                   <li class="pull-center1"><input type='text' id='epochfrom' class="form-control date-picker" placeholder="Analizar desde..."></li>
                
                   <li class="pull-center"><input type='text' id='epochto' class="form-control date-picker" placeholder="Analizar hasta..."></li>
+                
                 
                 
                 <li class="pull-right">
@@ -111,12 +113,13 @@
                     </div>
 
                     <ul class="main-menu">
-                        <li class="active"><a href="index.html"><i class="zmdi zmdi-home"></i> Home</a></li>
+                        <li ><a href="index.html"><i class="zmdi zmdi-home"></i> Home</a></li>
                         <li><a href="new.html"><i class="zmdi zmdi-card"></i>Ingresar Gasto</a></li>
-                        <li><a href="listdata.html"><i class="zmdi zmdi-view-list"></i> Listado de gastos</a></li>
+                         <li class="active"><a href="listdata.html"><i class="zmdi zmdi-view-list"></i> Listado de gastos</a></li>
                         <li><a href="circle.html"><i class="zmdi zmdi-layers"></i>Comparar por rubros</a></li>
                          <li><a href="report.html"><i class="zmdi zmdi-collection-text"></i>Reporte</a></li>
                          <li><a href="logout.html"><i class="zmdi zmdi-power"></i>Salir</a></li>
+                       
                        
                         
                         
@@ -130,7 +133,7 @@
             <section id="content">
                 <div class="container">
                     <div class="block-header">
-                        <h2>Inicio</h2>
+                        <h2>Lista de Gastos</h2>
                         
                         <ul class="actions">
                             <li>
@@ -166,116 +169,36 @@
                     
             
                     
-                    <div class="dash-widgets">
-                        <div class="row">
-                          
-                         <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h2>Particulares</h2>
-                                    <small id="particulargastos"></small>
-                                    
-                                    <ul class="actions">
-                                        <li class="dropdown action-show">
-                                            <a href="#" data-toggle="dropdown">
-                                                <i class="zmdi zmdi-more-vert"></i>
-                                            </a>
-                            
-                                            <div class="dropdown-menu pull-right">
-                                                <p class="p-20">
-                                                    You can put anything here
-                                                </p>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                
-                                <div class="card-body card-padding">
-                                    <div id="pie-chart" class="flot-chart-pie"></div>
-                                    <div id="pie" class="flc-pie hidden-xs"></div>
-                                </div>
-                            </div>
-                        </div>
-                              <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h2>Empresa</h2> <small id="empresagastos"></small>
-                                    
-                                    <ul class="actions">
-                                        <li class="dropdown action-show">
-                                            <a href="#" data-toggle="dropdown">
-                                                <i class="zmdi zmdi-more-vert"></i>
-                                            </a>
-                            
-                                            <div class="dropdown-menu pull-right">
-                                                <p class="p-20">
-                                                    You can put anything here
-                                                </p>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                
-                                <div class="card-body card-padding">
-                                    <div id="pie-chart2" class="flot-chart-pie"></div>
-                                    <div id="pie2" class="flc-pie hidden-xs"></div>
-                                </div>
-                            </div>
-                        </div>
-                         
-    
                     
-                        </div>
-                    </div>
                     
                     <div class="row">
                        
                             <!-- Recent Items -->
-                            <div class="card">
-                                <div class="card-header">
-                                    <h2>Ultimos gastos <small>Resumen de los ultimos registros ingresados</small></h2>
-                                    <ul class="actions">
-                                        <li class="dropdown">
-                                            <a href="#" data-toggle="dropdown">
-                                                <i class="zmdi zmdi-more-vert"></i>
-                                            </a>
-                                            
-                                            <ul class="dropdown-menu dropdown-menu-right">
-                                                <li>
-                                                    <a href="#">Refresh</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Settings</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Other Settings</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                                
-                                <div class="card-body m-t-0">
-                                    <table class="table table-inner table-vmiddle" id="lastexp">
-                                        <thead>
-                                            <tr>
-                                                <th style="width: 60px">Monto</th>
-                                                <th>Fecha</th>
-                                                <th>Categoria</th>
-                                                <th>Detalle</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                          
-                                            
-                                        </tbody>
-                                    </table>
-                                </div>
-                               
-                            </div>
-                            
-                       
-                       
+                            <div class="card" id='tableRAM'>
+                        <div class="card-header">
+                            <h2>Lista de gastos </h2>
+                        </div>
+                        
+                        <div class="table-responsive">
+                            <table id="data-table-basic" class="table table-condensed table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                         
+                                        <th data-column-id="monto" data-formatter="uk" data-type="numeric">Monto</th>
+                                         <th data-column-id="fecha" data-formatter="ukdate" data-order="desc">Fecha</th>
+                                        <th data-column-id="cat">Categoria</th>
+                                        <th data-column-id="detail">Detalle</th>
+                                        <th data-column-id="emp">Empresa/Particular</th>
+                                       
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                  
+                                  
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                         
                      
 
@@ -373,7 +296,7 @@
         <!--[if IE 9 ]>
             <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
         <![endif]-->
-        
+         <script src="vendors/bootgrid/jquery.bootgrid.min.js"></script>
         <script src="js/flot-charts/curved-line-chart.js"></script>
         <script src="js/flot-charts/line-chart.js"></script>
         <script src="js/charts.js"></script>
@@ -381,9 +304,10 @@
         <script src="js/demo.js"></script>
         <script src="js/init.js"></script>
         <script src="js/login.js"></script>
-        <script src="js/main.js"></script>
-        
-        
+        <script src="js/mainlist.js"></script>
+        <!-- Data Table -->
+       
+     
         
         
     </body>

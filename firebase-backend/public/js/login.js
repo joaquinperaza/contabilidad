@@ -4,15 +4,41 @@ var ususario;
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
    usuario=user;
-    
-        notify('Hola '+user.email+'!', 'inverse');
+      notify('Hola '+user.email+'!', 'inverse');
       document.getElementById("userbanner").innerHTML = user.email;
-           
+           getUser();
+        getExpenses(document.getElementById("userbanner").innerHTML);
        
   } else {
    redirect('auth.html');
   }
 });
+
+$( "#users" ).change(function() {
+ document.getElementById("userbanner").innerHTML=$( "#users" ).val();
+    getExpenses(document.getElementById("userbanner").innerHTML);
+});
+function getUser(){
+        var query = firebase.database().ref("users").orderByKey();
+    query.once("value")
+        .then(function (snapshot) {
+            var string='';
+            snapshot.forEach(function (childSnapshot) {
+                string+='<option>';
+               string+=childSnapshot.key;
+                string+='</option>';
+    
+                // key will be "ada" the first time and "alan" the second time
+
+                // childData will be the actual contents of the child
+
+            });
+        document.getElementById('users').innerHTML=string;
+            
+        });
+
+}
+
 
 function redirect (url) {
     var ua        = navigator.userAgent.toLowerCase(),

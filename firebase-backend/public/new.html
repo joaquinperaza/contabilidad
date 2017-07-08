@@ -111,8 +111,8 @@
                     </div>
 
                     <ul class="main-menu">
-                        <li class="active"><a href="index.html"><i class="zmdi zmdi-home"></i> Home</a></li>
-                        <li><a href="new.html"><i class="zmdi zmdi-card"></i>Ingresar Gasto</a></li>
+                        <li><a href="index.html"><i class="zmdi zmdi-home"></i> Home</a></li>
+                        <li class="active"><a href="new.html"><i class="zmdi zmdi-card"></i>Ingresar Gasto</a></li>
                         <li><a href="listdata.html"><i class="zmdi zmdi-view-list"></i> Listado de gastos</a></li>
                         <li><a href="circle.html"><i class="zmdi zmdi-layers"></i>Comparar por rubros</a></li>
                          <li><a href="report.html"><i class="zmdi zmdi-collection-text"></i>Reporte</a></li>
@@ -130,7 +130,7 @@
             <section id="content">
                 <div class="container">
                     <div class="block-header">
-                        <h2>Inicio</h2>
+                       
                         
                         <ul class="actions">
                             <li>
@@ -167,120 +167,46 @@
             
                     
                     <div class="dash-widgets">
+                          <div class="card">
+                              <div class="card-header">
+                                  <h2>Ingresar Gasto</h2>
+                                </div>
+                              <div class="card-body card-padding">
                         <div class="row">
-                          
-                         <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h2>Particulares</h2>
-                                    <small id="particulargastos"></small>
-                                    
-                                    <ul class="actions">
-                                        <li class="dropdown action-show">
-                                            <a href="#" data-toggle="dropdown">
-                                                <i class="zmdi zmdi-more-vert"></i>
-                                            </a>
                             
-                                            <div class="dropdown-menu pull-right">
-                                                <p class="p-20">
-                                                    You can put anything here
-                                                </p>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
+                            <form class='form-inline'>
+                             <div class="toggle-switch" id="ts4s" data-ts-color="green">
+                                        <label for="ts4" class="ts-label"></label>
+                                        <input id="ts4" type="checkbox" hidden="hidden">
+                                        <label for="ts4" class="ts-helper"></label>
+                                    </div>
+                                     
+                                      <h4 style="display:inline" id="currency">$</h4>
+                                <br>  <label for="monto">Monto</label>
+                                       <input type="text" id="monto" class="form-control input-mask" data-mask="000000" placeholder="1000,00">
+                               
                                 
-                                <div class="card-body card-padding">
-                                    <div id="pie-chart" class="flot-chart-pie"></div>
-                                    <div id="pie" class="flc-pie hidden-xs"></div>
-                                </div>
-                            </div>
-                        </div>
-                              <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h2>Empresa</h2> <small id="empresagastos"></small>
+                                
+                                    <label for="fecha">Fecha</label>
+                                    <input type='text' id='fecha' class="form-control date-picker"><br><br>
+                                <label for="note">Descripción</label>
+                                       <input type="text" id="note" class="form-control input-mask" placeholder="Detalle">
+                               
+                                
+                                <br><br>
+                                <div id="iconse" class="outlayicone"></div><br>
+                                  <div id="iconsp" class="outlayiconp"></div>
                                     
-                                    <ul class="actions">
-                                        <li class="dropdown action-show">
-                                            <a href="#" data-toggle="dropdown">
-                                                <i class="zmdi zmdi-more-vert"></i>
-                                            </a>
-                            
-                                            <div class="dropdown-menu pull-right">
-                                                <p class="p-20">
-                                                    You can put anything here
-                                                </p>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
+                              
                                 
-                                <div class="card-body card-padding">
-                                    <div id="pie-chart2" class="flot-chart-pie"></div>
-                                    <div id="pie2" class="flc-pie hidden-xs"></div>
-                                </div>
-                            </div>
-                        </div>
-                         
-    
-                    
+                                
+                            </form>
+                        
                         </div>
                     </div>
-                    
-                    <div class="row">
-                       
-                            <!-- Recent Items -->
-                            <div class="card">
-                                <div class="card-header">
-                                    <h2>Ultimos gastos <small>Resumen de los ultimos registros ingresados</small></h2>
-                                    <ul class="actions">
-                                        <li class="dropdown">
-                                            <a href="#" data-toggle="dropdown">
-                                                <i class="zmdi zmdi-more-vert"></i>
-                                            </a>
-                                            
-                                            <ul class="dropdown-menu dropdown-menu-right">
-                                                <li>
-                                                    <a href="#">Refresh</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Settings</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Other Settings</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                                
-                                <div class="card-body m-t-0">
-                                    <table class="table table-inner table-vmiddle" id="lastexp">
-                                        <thead>
-                                            <tr>
-                                                <th style="width: 60px">Monto</th>
-                                                <th>Fecha</th>
-                                                <th>Categoria</th>
-                                                <th>Detalle</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                          
-                                            
-                                        </tbody>
-                                    </table>
-                                </div>
-                               
-                            </div>
-                            
-                       
-                       
-                        
-                     
-
-                          
                         </div>
+                     </div>
+                 
                     </div>
               
             </section>
@@ -369,6 +295,11 @@
         <script src="vendors/bower_components/flot.curvedlines/curvedLines.js"></script>                         
         <script src="vendors/bower_components/flot-orderBars/js/jquery.flot.orderBars.js"></script>
         
+         <script src="vendors/chosen_v1.4.2/chosen.jquery.min.js"></script>
+        <script src="vendors/fileinput/fileinput.min.js"></script>
+        <script src="vendors/input-mask/input-mask.min.js"></script>
+        <script src="vendors/farbtastic/farbtastic.min.js"></script>
+        
         <!-- Placeholder for IE9 -->
         <!--[if IE 9 ]>
             <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
@@ -381,8 +312,7 @@
         <script src="js/demo.js"></script>
         <script src="js/init.js"></script>
         <script src="js/login.js"></script>
-        <script src="js/main.js"></script>
-        
+        <script src="js/maincreate.js"></script>
         
         
         

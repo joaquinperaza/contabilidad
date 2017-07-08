@@ -1,5 +1,6 @@
 var debuger;
 var categorias;
+var tablememory;
 
 $('#epochto').on('dp.change', function (e) {
     getExpenses(document.getElementById("userbanner").innerHTML);
@@ -8,11 +9,34 @@ $('#epochfrom').on('dp.change', function (e) {
     getExpenses(document.getElementById("userbanner").innerHTML);
 })
 
+function update(){
+  
+    $("#data-table-basic").bootgrid({
+         rowCount:-1,
+         formatters: {
+                "ukdate": function(column, row)
+                {
+                    return moment.unix(parseInt(row[column.id])/1000).format("DD MMM YYYY");
+                },
+               
+            },
 
+                    css: {
+                        icon: 'zmdi icon',
+                        iconColumns: 'zmdi-view-module',
+                        iconDown: 'zmdi-expand-more',
+                        iconRefresh: 'zmdi-refresh',
+                        iconUp: 'zmdi-expand-less'
+                    }
+                });
+}
 $(document).ready(function () {
     categorias = getCategory();
+     tablememory=document.getElementById('tableRAM').innerHTML;
+    
 });
 
+                
 
 function getExpenses(usermail) {
     var to = new Date(Date.parse($('#epochto').val()) + 86390000);
@@ -52,9 +76,13 @@ function getExpenses(usermail) {
             ///return
 
             var datos = categorizar(expenses);
-            display(expenses);
-            graficar(datos);
+       //     display(expenses);
+          //  graficar(datos);
+         document.getElementById('tableRAM').innerHTML=tablememory;
             listarlast(expenses);
+        update();
+        // $("#data-table-basic").bootgrid("reload");
+         
             /////////
         });
 
@@ -101,52 +129,47 @@ function getCategory() {
 function display(expenses) {
     console.log(expenses);
 }
-function sumar(part,empresa) {
-    var tp=0;
-    var te=0;
-    function sp(gasto){
-        tp+=gasto.data;
-    }
-    function se(gasto){
-        te+=gasto.data;
-    }
-    part.forEach(sp);
-    empresa.forEach(se);
-    document.getElementById('particulargastos').innerHTML='Total: USD'+Math.round(tp).toString();
-     document.getElementById('empresagastos').innerHTML='Total: USD'+Math.round(te).toString();
-}
 
 function listarlast(data) {
+   
     function wormhole(worm) {
         var fecha = new Date(worm.fecha);
         var emp = false;
         if (worm.categoria.type == 'empresa') {
             emp = true;
         }
-        addexp(Math.round(worm.amount), fecha.toLocaleDateString(), worm.categoria.name, worm.detalle, emp);
+        addexp(Math.round(worm.amount), fecha.getTime(), worm.categoria.name, worm.detalle, emp);
+       
     }
     var ordered = data.sort(function (a, b) {
         return parseFloat(a.fecha) - parseFloat(b.fecha);
     });
 
-    var tableRef = document.getElementById('lastexp').getElementsByTagName('tbody')[0];
+    var tableRef = document.getElementById('data-table-basic').getElementsByTagName('tbody')[0];
     while (tableRef.rows.length > 0) {
         tableRef.deleteRow(0);
     }
     ordered.forEach(wormhole)
-    console.log(ordered);
+    
+    console.log('tabled');
 
 
 }
 
 function addexp(monto, fecha, categoria, detalle, emp) {
-    var tableRef = document.getElementById('lastexp').getElementsByTagName('tbody')[0];
-
+    var tableRef = document.getElementById('data-table-basic').getElementsByTagName('tbody')[0];
+    var label;
     var row = tableRef.insertRow(0);
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
     var cell3 = row.insertCell(2);
     var cell4 = row.insertCell(3);
+     var cell5 = row.insertCell(4);
+    if (emp == true) {
+        label = 'Empresa';
+    } else {
+       label = 'Particular';
+    }
     var text1 = document.createTextNode(monto);
     cell1.appendChild(text1);
     var text2 = document.createTextNode(fecha);
@@ -155,11 +178,11 @@ function addexp(monto, fecha, categoria, detalle, emp) {
     cell3.appendChild(text3);
     var text4 = document.createTextNode(detalle);
     cell4.appendChild(text4);
-    if (emp == true) {
-        cell1.className = 'f-500 c-green';
-    } else {
-        cell1.className = 'f-500 c-red';
-    }
+    var text5 = document.createTextNode(label);
+    cell5.appendChild(text5);
+    
+    
+    
 
 
 }
@@ -175,7 +198,7 @@ function graficar(datos) {
             var that = {
                 data: item.amount,
                 label: item.name,
-                color: '#' + '00AA00'
+                color: '#' + (Math.random().toString(16) + "000000").substring(2, 8)
             };
             empresa.push(that);
 
@@ -184,7 +207,7 @@ function graficar(datos) {
             var that = {
                 data: item.amount,
                 label: item.name,
-                color: '#' + 'EE0000'
+                color: '#' + (Math.random().toString(16) + "000000").substring(2, 8)
             };
             particulares.push(that);
         }
@@ -194,7 +217,6 @@ function graficar(datos) {
     //datos.forEach(parser);
     //console.log(empresa);
     // console.log(particulares);
-    sumar(particulares,empresa);
 
     $.plot('#pie-chart', particulares, {
         series: {
@@ -213,7 +235,11 @@ function graficar(datos) {
             }
         },
         legend: {
-             show: false
+            container: '#pie',
+            backgroundOpacity: 0.5,
+            noColumns: 0,
+            backgroundColor: "white",
+            lineWidth: 0
         },
         grid: {
             hoverable: true,
@@ -248,7 +274,11 @@ function graficar(datos) {
             }
         },
         legend: {
-             show: false
+            container: '#pie2',
+            backgroundOpacity: 0.5,
+            noColumns: 0,
+            backgroundColor: "white",
+            lineWidth: 0
         },
         grid: {
             hoverable: true,
