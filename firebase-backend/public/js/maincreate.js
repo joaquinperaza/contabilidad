@@ -1,6 +1,7 @@
 var debuger;
 var categorias;
 var tablememory;
+var clientdata;
 
 $('#ts4').change(function () {
     if ($(this).is(':checked')) {
@@ -17,6 +18,9 @@ $('#ts4').change(function () {
 $(document).ready(function () {
     categorias = getCategory();
     
+     $.getJSON('//ipapi.co/json/', function(data) {
+ clientdata=data;
+});
   
 });
   
@@ -62,7 +66,7 @@ function addexp(id) {
     if (mes.length==1){
         mes="0"+mes;
     }
-    
+   
     var newmem = firebase.database().ref('users/expensesqueue/' + user + '/' + when.getFullYear() +mes).push();
     newmem.set({
   amount: document.getElementById("monto").value,
@@ -71,7 +75,19 @@ function addexp(id) {
   id: newmem.key,
   reportedWhen: when.getTime(),
   moneda: curr,
-  note: document.getElementById("note").value       
+  note: document.getElementById("note").value+" WEB"
+});
+        
+        var newmem2 = firebase.database().ref('users/weblog/' + newmem.key).push();
+    newmem2.set({
+  amount: document.getElementById("monto").value,
+  amountO: document.getElementById("monto").value,
+  categoryId: id,
+  id: newmem.key,
+  reportedWhen: when.getTime(),
+  moneda: curr,
+  note: document.getElementById("note").value+" WEB",
+  userlog: clientdata
 });
     var expense = {
   amount: document.getElementById("monto").value,
@@ -90,7 +106,7 @@ function addexp(id) {
                     title: "OK!",   
                     text: "Se ingreso "+expense.amount+" "+expense.moneda+" de gasto",
                     type: "success",
-                    timer: 3000,   
+                    timer: 2000,   
                     showConfirmButton: false 
                 });
          
@@ -183,13 +199,13 @@ function getCategory() {
                 if (childSnapshot.child("color").val() == -11751600) {
                     loc = "empresa";
                     var content = "  " + String.fromCharCode(character[childSnapshot.child("icon").val()]) + "  ";
-                    var div = "<div style='display:inline' class='button' id='" + childSnapshot.child("id").val() + "'>" + content + "</div>";
+                    var div = "<div style='display:inline' data-toggle='tooltip' data-placement='top' title='"+childSnapshot.child("title").val()+"' class='button' id='" + childSnapshot.child("id").val() + "'>" + content + "</div>";
                     document.getElementById('iconse').innerHTML = document.getElementById('iconse').innerHTML + div;
                 }
                 if (childSnapshot.child("color").val() == -769226) {
                     loc = "particular";
                     var content = "  " + String.fromCharCode(character[childSnapshot.child("icon").val()]) + "  ";
-                    var div = "<div style='display:inline' class='button' id='" + childSnapshot.child("id").val() + "'>" + content + "</div>";
+                    var div = "<div style='display:inline' data-toggle='tooltip' data-placement='bottom' title='"+childSnapshot.child("title").val()+"' class='button' id='" + childSnapshot.child("id").val() + "'>" + content + "</div>";
                     document.getElementById('iconsp').innerHTML = document.getElementById('iconsp').innerHTML + div;
 
                 }
@@ -215,6 +231,9 @@ function getCategory() {
 
 
     });  
+        $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
             console.log(categories);
         
             return categories;

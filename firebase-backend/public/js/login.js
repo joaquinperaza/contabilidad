@@ -18,6 +18,7 @@ $( "#users" ).change(function() {
  document.getElementById("userbanner").innerHTML=$( "#users" ).val();
     getExpenses(document.getElementById("userbanner").innerHTML);
 });
+var userslist=[];
 function getUser(){
         var query = firebase.database().ref("users").orderByKey();
     query.once("value")
@@ -27,7 +28,7 @@ function getUser(){
                 string+='<option>';
                string+=childSnapshot.key;
                 string+='</option>';
-    
+             userslist.push(childSnapshot.key);
                 // key will be "ada" the first time and "alan" the second time
 
                 // childData will be the actual contents of the child
