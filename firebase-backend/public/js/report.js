@@ -1,5 +1,6 @@
 var debuger;
 var categorias;
+var tablememory;
 
 $('#epochto').on('dp.change', function (e) {
     getExpenses(document.getElementById("userbanner").innerHTML);
@@ -14,8 +15,12 @@ $(document).ready(function () {
 });
 
 
+
 function getExpenses(usermail) {
-     document.getElementById("username").innerHTML=usermail;
+
+    document.getElementById('desde').innerHTML = "Desde: " + document.getElementById('epochfrom').value;
+    document.getElementById('hasta').innerHTML = "Hasta: " + document.getElementById('epochto').value;
+    document.getElementById("username").innerHTML = usermail;
     var to = new Date(Date.parse($('#epochto').val()) + 86390000);
     var from = new Date(Date.parse($('#epochfrom').val()));
     var expenses;
@@ -53,9 +58,13 @@ function getExpenses(usermail) {
             ///return
 
             var datos = categorizar(expenses);
-            display(expenses);
-            graficar(datos);
-            listarlast(expenses);
+            //     display(expenses);
+             reportar(datos);
+            
+          
+            
+            // $("#data-table-basic").bootgrid("reload");
+
             /////////
         });
 
@@ -92,8 +101,8 @@ function getCategory() {
                 // childData will be the actual contents of the child
 
             });
-          getExpenses(document.getElementById("userbanner").innerHTML);
             console.log(categories);
+            getExpenses(document.getElementById("userbanner").innerHTML);
             return categories;
         });
 
@@ -103,6 +112,12 @@ function getCategory() {
 function display(expenses) {
     console.log(expenses);
 }
+
+
+
+
+var oldtable = document.getElementById('tabla').innerHTML;
+
 function sumar(part,empresa) {
     var tp=0;
     var te=0;
@@ -117,157 +132,61 @@ function sumar(part,empresa) {
     document.getElementById('particulargastos').innerHTML='Total: USD'+Math.round(tp).toString();
      document.getElementById('empresagastos').innerHTML='Total: USD'+Math.round(te).toString();
 }
+function reportar(categorias) {
+    var tabla = document.getElementById('tabla');
+    tabla.innerHTML = oldtable;
+    var emph = tabla.insertRow(0);
+    emph.insertCell(0).innerHTML = '<h5 class="t-uppercase f-400">Empresa</h5>';
+    
+ var emph2 = tabla.insertRow(1);
+    emph2.insertCell(0).innerHTML = "";
+     emph2.insertCell(1).innerHTML = "";
+     emph2.insertCell(2).innerHTML = "";
+    emph2.insertCell(3).innerHTML = '<h5 class="t-uppercase f-400" id="finalemp"></h5>';
+    
 
-function listarlast(data) {
-    function wormhole(worm) {
-        var fecha = new Date(worm.fecha);
-        var emp = false;
-        if (worm.categoria.type == 'empresa') {
-            emp = true;
-        }
-        addexp(Math.round(worm.amount), fecha.toLocaleDateString(), worm.categoria.name, worm.detalle, emp);
-    }
-    var ordered = data.sort(function (a, b) {
-        return parseFloat(a.fecha) - parseFloat(b.fecha);
-    });
-
-    var tableRef = document.getElementById('lastexp').getElementsByTagName('tbody')[0];
-    while (tableRef.rows.length > 0) {
-        tableRef.deleteRow(0);
-    }
-    ordered.forEach(wormhole)
-    console.log(ordered);
-
-
-}
-
-function addexp(monto, fecha, categoria, detalle, emp) {
-    var tableRef = document.getElementById('lastexp').getElementsByTagName('tbody')[0];
-
-    var row = tableRef.insertRow(0);
-    var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(1);
-    var cell3 = row.insertCell(2);
-    var cell4 = row.insertCell(3);
-    var text1 = document.createTextNode(monto);
-    cell1.appendChild(text1);
-    var text2 = document.createTextNode(fecha);
-    cell2.appendChild(text2);
-    var text3 = document.createTextNode(categoria);
-    cell3.appendChild(text3);
-    var text4 = document.createTextNode(detalle);
-    cell4.appendChild(text4);
-    if (emp == true) {
-        cell1.className = 'f-500 c-green';
-    } else {
-        cell1.className = 'f-500 c-red';
-    }
-
-
-}
-
-function graficar(datos) {
-    var particulares = [];
-    var empresa = [];
-    for (var index in datos) {
-        console.log(item);
-        console.log(index);
-        var item = datos[index];
+    var ph = tabla.insertRow(-1);
+    ph.insertCell(0).innerHTML = '<h5 class="t-uppercase f-400">Particulares</h5>';
+    var particulares=0;
+    var empresa=0;
+   for(var cat in categorias) {
+   item=categorias[cat];
         if (item.type == 'empresa') {
-            var that = {
-                data: item.amount,
-                label: item.name,
-                color: '#' + '00AA00'
-            };
-            empresa.push(that);
-
-        }
-        if (item.type == 'particular') {
-            var that = {
-                data: item.amount,
-                label: item.name,
-                color: '#' + 'EE0000'
-            };
-            particulares.push(that);
-        }
-
-
-    }
-    //datos.forEach(parser);
-    //console.log(empresa);
-    // console.log(particulares);
-    sumar(particulares,empresa);
-
-    $.plot('#pie-chart', particulares, {
-        series: {
-            pie: {
-                show: true,
-                radius: 1,
-                label: {
-                    show: true,
-                    radius: 2 / 3,
-                    formatter: function (label, series) {
-                        return '<div style="font-size:8pt;text-align:center;padding:2px;color:white;">' + label + '<br/>' + Math.round(series.data[0][1]) + '</div>';
-
-                    },
-                    threshold: 0.01
-                }
-            }
-        },
-        legend: {
-             show: false
-        },
-       
-        tooltip: true,
-        tooltipOpts: {
-            content: "%p.0%, %s", // show percentages, rounding to 2 decimal places
-            shifts: {
-                x: 20,
-                y: 0
-            },
-            defaultTheme: false,
-            cssClass: 'flot-tooltip'
-        }
-
-    });
-    $.plot('#pie-chart2', empresa, {
-        series: {
-            pie: {
-                show: true,
-                radius: 1,
-                label: {
-                    show: true,
-                    radius: 2 / 3,
-                    formatter: function (label, series) {
-                        return '<div style="font-size:8pt;text-align:center;padding:2px;color:white;">' + label + '<br/>' + Math.round(series.data[0][1]) + '</div>';
-
-                    },
-                    threshold: 0.01
-                }
-            }
-        },
-        legend: {
-             show: false
-        },
+            var empe = tabla.insertRow(1);
+             empe.insertCell(0).innerHTML = "";
+             empe.insertCell(1).innerHTML = item.name;
+             empe.insertCell(2).innerHTML = Math.round(item.amount);
+            
+            empresa+=item.amount;
+        } else {
         
-        tooltip: true,
-        tooltipOpts: {
-            content: "%p.0%, %s", // show percentages, rounding to 2 decimal places
-            shifts: {
-                x: 20,
-                y: 0
-            },
-            defaultTheme: false,
-            cssClass: 'flot-tooltip'
+             var empe = tabla.insertRow(-1);
+             empe.insertCell(0).innerHTML = "";
+             empe.insertCell(1).innerHTML = item.name;
+             empe.insertCell(2).innerHTML = Math.round(item.amount);
+            
+            particulares+=item.amount;
         }
+    }
+     var emph3 = tabla.insertRow(-1);
+    emph3.insertCell(0).innerHTML = "";
+     emph3.insertCell(1).innerHTML = "";
+     emph3.insertCell(2).innerHTML = "";
+    emph3.insertCell(3).innerHTML = '<h5 class="t-uppercase f-400" id="finalpar"></h5>';
+    console.log(empresa+particulares);
+    document.getElementById('eemp').innerHTML="$"+Math.round(empresa).toString();
+    document.getElementById('epar').innerHTML="$"+Math.round(particulares).toString();
+    document.getElementById('egresos').innerHTML="$"+Math.round(empresa+particulares).toString();
+     document.getElementById('finalemp').innerHTML="$"+Math.round(empresa).toString();
+    document.getElementById('finalpar').innerHTML="$"+Math.round(particulares).toString();
+    
+    
+    
+   
 
-    });
 
 
-
-};
-
-
+}
 
 
 function categorizar(expenses) {
@@ -292,6 +211,7 @@ function categorizar(expenses) {
     }
 
     expenses.forEach(sumarcat);
+      reportar(result);
     // console.log(result);
     return result;
 

@@ -39,6 +39,7 @@ $(document).ready(function () {
                 
 
 function getExpenses(usermail) {
+     document.getElementById("username").innerHTML=usermail;
     var to = new Date(Date.parse($('#epochto').val()) + 86390000);
     var from = new Date(Date.parse($('#epochfrom').val()));
     var expenses;
