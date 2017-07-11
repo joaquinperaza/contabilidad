@@ -60,14 +60,57 @@ function getExpenses(usermail) {
             var datos = categorizar(expenses);
             //     display(expenses);
              reportar(datos);
-            
+             getIngresos(user);
+        
           
-            
-            // $("#data-table-basic").bootgrid("reload");
-
-            /////////
         });
 
+}
+
+function getIngresos(user){
+       var caja=0;
+       var ingresos = [];
+     var to = new Date(Date.parse($('#epochto').val()) + 86390000);
+    var from = new Date(Date.parse($('#epochfrom').val()));
+        var query = firebase.database().ref('users/' + user + '/ingresos').orderByKey();
+    query.once("value")
+        .then(function (snapshot) {
+            debuger = snapshot;
+            snapshot.forEach(function (childSnapshot) {
+                // key will be "ada" the first time and "alan" the second time
+                // childData will be the actual contents of the child 
+               
+                    var cData = childSnapshot;
+                    var ingreso = {
+                        id: childSnapshot.key,
+                        amount: cData.child("monto").val(),
+                        fecha: cData.child("fecha").val()
+                        
+                    };
+                
+                    var check = new Date(ingreso.fecha);
+                    if (check > from && check < to) {
+                        ingresos.push(ingreso);
+                        caja+=ingreso.amount;
+                    }
+              
+
+               
+
+            });
+
+            ///return
+        var egresado = parseInt(document.getElementById('egresos').innerHTML.replace( /\D+/g, ''));
+         document.getElementById('ingresostot').innerHTML = "$"+caja.toString();
+         document.getElementById('saldotot').innerHTML = "$"+(caja-egresado).toString();
+
+        
+          
+        });
+    
+    
+    
+    
 }
 var categories = [];
 
@@ -101,7 +144,8 @@ function getCategory() {
                 // childData will be the actual contents of the child
 
             });
-            console.log(categories);
+          
+        
             getExpenses(document.getElementById("userbanner").innerHTML);
             return categories;
         });
@@ -173,7 +217,7 @@ function reportar(categorias) {
      emph3.insertCell(1).innerHTML = "";
      emph3.insertCell(2).innerHTML = "";
     emph3.insertCell(3).innerHTML = '<h5 class="t-uppercase f-400" id="finalpar"></h5>';
-    console.log(empresa+particulares);
+  
     document.getElementById('eemp').innerHTML="$"+Math.round(empresa).toString();
     document.getElementById('epar').innerHTML="$"+Math.round(particulares).toString();
     document.getElementById('egresos').innerHTML="$"+Math.round(empresa+particulares).toString();
