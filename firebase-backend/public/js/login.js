@@ -31,12 +31,12 @@ document.getElementById("epochto").value= (new Date().getMonth()+1)+'/'+new Date
 
 });
 
-var userslist=[];
+var userslist=["---"];
 function getUser(){
         var query = firebase.database().ref("users").orderByKey();
     query.once("value")
         .then(function (snapshot) {
-            var string='';
+            var string='<option>---</option>';
             snapshot.forEach(function (childSnapshot) {
                 string+='<option>';
                string+=childSnapshot.key;

@@ -20,7 +20,9 @@ $(document).ready(function () {
     
      $.getJSON('//ipapi.co/json/', function(data) {
  clientdata=data;
+           document.getElementById("banus").innerHTML="Ingresar Gasto - "+firebase.auth().currentUser.email;
 });
+  
   
 });
   
