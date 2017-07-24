@@ -5,48 +5,57 @@ $('#epochto').on('dp.change', function (e) {
     run();
 })
 $('#epochfrom').on('dp.change', function (e) {
-   run();
+    run();
 })
 
 
 $(document).ready(function () {
     categorias = getCategory();
-     zerohtml = document.getElementById('actualparent').innerHTML;
+    zerohtml = document.getElementById('actualparent').innerHTML;
 });
 var zerohtml;
-function run(){
-   document.getElementById('actualparent').innerHTML=zerohtml;
-    document.getElementById('old').innerHTML='';
+
+function run() {
+    document.getElementById('actualparent').innerHTML = zerohtml;
+    document.getElementById('old').innerHTML = '';
     userslist.forEach(runnable);
 }
-var ready=false;
-function runnable(data,number){
-    ready=false
-    getExpenses(data,number);
-    
-    
-    
-}
-function onSuc(number){
-    
-         document.getElementById("pie").setAttribute("id", "no"+number.toString());
-      document.getElementById("pie2").setAttribute("id", "not"+number.toString());
-     document.getElementById("username").setAttribute("id", "username"+number.toString());
-    
+var ready = false;
 
-    document.getElementById("pie-chart").setAttribute("id", "oldchart"+number.toString());
-    document.getElementById("pie-chart2").setAttribute("id", "oldchar2"+number.toString());
-    document.getElementById('particulargastos').setAttribute("id", "particulares"+number.toString());
-    document.getElementById('empresagastos').setAttribute("id", "empresa"+number.toString());
-   $('#actual').appendTo('#old');
-    if(userslist.length-1!=number){
-    document.getElementById('actualparent').innerHTML=zerohtml;}
-    
-   
-    
-    
+function runnable(data, number) {
+
+    if (data != "---") {
+        getExpenses(data, number);
+        ready = false
+    }
+
+
+
+
 }
-function getExpenses(usermail,number) {
+
+function onSuc(number) {
+
+    document.getElementById("pie").setAttribute("id", "no" + number.toString());
+    document.getElementById("pie2").setAttribute("id", "not" + number.toString());
+    document.getElementById("username").setAttribute("id", "username" + number.toString());
+
+
+    document.getElementById("pie-chart").setAttribute("id", "oldchart" + number.toString());
+    document.getElementById("pie-chart2").setAttribute("id", "oldchar2" + number.toString());
+    document.getElementById('particulargastos').setAttribute("id", "particulares" + number.toString());
+    document.getElementById('empresagastos').setAttribute("id", "empresa" + number.toString());
+    $('#actual').appendTo('#old');
+    if (userslist.length - 1 != number) {
+        document.getElementById('actualparent').innerHTML = zerohtml;
+    }
+
+
+
+
+}
+
+function getExpenses(usermail, number) {
     var to = new Date(Date.parse($('#epochto').val()) + 86390000);
     var from = new Date(Date.parse($('#epochfrom').val()));
     var expenses;
@@ -84,11 +93,11 @@ function getExpenses(usermail,number) {
             ///return
 
             var datos = categorizar(expenses);
-          
+
             graficar(datos);
-        document.getElementById("username").innerHTML=usermail;
-        onSuc(number);
-        
+            document.getElementById("username").innerHTML = usermail;
+            onSuc(number);
+
             //listarlast(expenses);
             /////////
         });
@@ -126,7 +135,7 @@ function getCategory() {
                 // childData will be the actual contents of the child
 
             });
-        run();
+            run();
             console.log(categories);
             return categories;
         });
@@ -135,19 +144,21 @@ function getCategory() {
 }
 
 
-function sumar(part,empresa) {
-    var tp=0;
-    var te=0;
-    function sp(gasto){
-        tp+=gasto.data;
+function sumar(part, empresa) {
+    var tp = 0;
+    var te = 0;
+
+    function sp(gasto) {
+        tp += gasto.data;
     }
-    function se(gasto){
-        te+=gasto.data;
+
+    function se(gasto) {
+        te += gasto.data;
     }
     part.forEach(sp);
     empresa.forEach(se);
-    document.getElementById('particulargastos').innerHTML='Total: USD'+Math.round(tp).toString();
-     document.getElementById('empresagastos').innerHTML='Total: USD'+Math.round(te).toString();
+    document.getElementById('particulargastos').innerHTML = 'Total: USD' + Math.round(tp).toString();
+    document.getElementById('empresagastos').innerHTML = 'Total: USD' + Math.round(te).toString();
 }
 
 
@@ -184,7 +195,7 @@ function graficar(datos) {
     //datos.forEach(parser);
     //console.log(empresa);
     // console.log(particulares);
-    sumar(particulares,empresa);
+    sumar(particulares, empresa);
 
     $.plot('#pie-chart', particulares, {
         series: {
@@ -203,9 +214,9 @@ function graficar(datos) {
             }
         },
         legend: {
-             show: false
+            show: false
         },
-        
+
         tooltip: true,
         tooltipOpts: {
             content: "%p.0%, %s", // show percentages, rounding to 2 decimal places
@@ -235,9 +246,9 @@ function graficar(datos) {
             }
         },
         legend: {
-             show: false
+            show: false
         },
-       
+
         tooltip: true,
         tooltipOpts: {
             content: "%p.0%, %s", // show percentages, rounding to 2 decimal places
