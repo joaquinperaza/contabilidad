@@ -1,16 +1,30 @@
-# [Now UI Dashboard React](https://demos.creative-tim.com/now-ui-dashboard-react/#/dashboard) [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/intent/tweet?url=https%3A%2F%2Fdemos.creative-tim.com%2Fnow-ui-dashboard-react%2F%23%2Fdashboard&text=Now%20UI%20Dashboard%20React%20by%20Creative%20Tim%20%7C%20Free%20React%20Admin%20Template&original_referer=http%3A%2F%2Flocalhost%3A3000%2Fdashboard&via=creativetim&hashtags=react%2Cbootstrap)
+# [Material Dashboard PRO React](https://demos.creative-tim.com/paper-dashboard-pro-react/#/dashboard) [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/intent/tweet?url=https%3A%2F%2Fnud-pro-react.creative-tim.com&text=Light%20Bootstrap%20Dashboard%20React%20-%20Free%20Bootstrap%20Admin%20Template&original_referer=https%3A%2F%2Fdemos.creative-tim.com%2Fpaper-dashboard-pro-react%2F&via=creativetim&hashtags=react%2Cbootstrap)
 
 
 
-![version](https://img.shields.io/badge/version-1.4.0-blue.svg) ![license](https://img.shields.io/badge/license-MIT-blue.svg) [![GitHub issues open](https://img.shields.io/github/issues/creativetimofficial/now-ui-dashboard-react.svg?maxAge=2592000)]() [![GitHub issues closed](https://img.shields.io/github/issues-closed-raw/creativetimofficial/now-ui-dashboard-react.svg?maxAge=2592000)]() [![Chat](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://discord.gg/E4aHAQy)
+![version](https://img.shields.io/badge/version-1.2.0-blue.svg) [![GitHub issues open](https://img.shields.io/github/issues/creativetimofficial/ct-paper-dashboard-pro-react.svg?maxAge=2592000)](https://github.com/creativetimofficial/ct-paper-dashboard-pro-react/issues?q=is%3Aopen+is%3Aissue) [![GitHub issues closed](https://img.shields.io/github/issues-closed-raw/creativetimofficial/ct-paper-dashboard-pro-react.svg?maxAge=2592000)](https://github.com/creativetimofficial/ct-paper-dashboard-pro/issues-react?q=is%3Aissue+is%3Aclosed)  [![Chat](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://discord.gg/E4aHAQy)
 
-![Product Gif](./now-ui-dashboard-react.gif)
+![Product Gif](./github-assets/paper-dashboard-pro-react.gif)
 
-**[Now UI Dashboard React](https://demos.creative-tim.com/now-ui-dashboard-react/#/admin/dashboard)** is an admin dashboard template designed to be beautiful and simple. It is built on top of [Reactstrap](https://reactstrap.github.io/) and [React](https://reactjs.org/) ([create-react-app](https://github.com/facebook/create-react-app)), using [Now UI Dashboard](https://www.creative-tim.com/product/now-ui-dashboard) and it is fully responsive. It comes with a big collections of elements that will offer you multiple possibilities to create the app that best fits your needs. It can be used to create admin panels, project management systems, web applications backend, CMS or CRM.
+**[Paper Dashboard PRO React](https://demos.creative-tim.com/paper-dashboard-pro-react/#/admin/dashboard)** is a beautiful [Reactstrap](https://reactstrap.github.io/) ([Bootstrap 4](http://getbootstrap.com/)) admin dashboard with a large number of components, designed to look neat and organized. If you are looking for a tool to manage and visualize data about your business, this dashboard is the thing for you. It combines colors that are easy on the eye, spacious cards, beautiful typography, and graphics. Paper Dashboard PRO React comes packed with all plugins that you might need inside a project and documentation on how to get started. It is light and easy to use, and also very powerful.
 
-The product represents a big suite of front-end developer tools that can help you jump start your project. We have created it thinking about things you actually need in a dashboard. Now UI Dashboard React contains multiple handpicked and optimized plugins. Everything is designed to fit with one another. As you will be able to see, the dashboard you can access on Creative Tim is a customization of this product.
 
-It comes with 6 filter colors for the sidebar (`black`, `blue`, `green`, `orange`, `red`, `yellow`) and an option to have a background image.
+We made it our priority to not add things that you don't need, so the Paper Dashboard PRO React comes with just enough features for you to easily use. It combines multiple components and plugins and features numerous example of how it can be used. Inside the archive, you will also find multiple example pages to get you started or provide inspiration.
+
+
+**[Paper Dashboard PRO React](https://demos.creative-tim.com/paper-dashboard-pro-react/#/admin/dashboard)** is the extended version of [Paper Dashboard](https://www.creative-tim.com/product/paper-dashboard-pro). Based on feedback from people that downloaded and used it, we have added needed components, and we have created multiple examples pages. We are curious to see how you want to use it and also improve it, so let us know any feedback you have.
+
+
+
+**Bootstrap 4 support**
+
+
+Paper Dashboard PRO React is built on top of [Bootstrap 4](http://getbootstrap.com/) with the usage of [Reactstrap](https://reactstrap.github.io/), so it fully supports it. Most of the elements from the dashboard are re-designed to resemble sheets of paper and color pastels. If they are elements that we have not touched, they will gracefully fall back to the [Bootstrap 4](http://getbootstrap.com/) / [Reactstrap](https://reactstrap.github.io/) default.
+
+
+Let us know what you think and what we can improve below. And good luck with development!
+
+View example pages [here](https://demos.creative-tim.com/paper-dashboard-pro-react/#/admin/dashboard).
 
 ## Table of Contents
 
@@ -29,36 +43,36 @@ It comes with 6 filter colors for the sidebar (`black`, `blue`, `green`, `orange
 
 ## Versions
 
-[<img src="https://s3.amazonaws.com/creativetim_bucket/github/html.png" width="60" height="60" />](https://www.creative-tim.com/product/now-ui-dashboard)
-[<img src="https://s3.amazonaws.com/creativetim_bucket/github/react.svg" width="60" height="60" />](https://www.creative-tim.com/product/now-ui-dashboard-react)
-[<img src="https://s3.amazonaws.com/creativetim_bucket/github/angular.png" width="60" height="60" />](https://www.creative-tim.com/product/now-ui-dashboard-angular2)
+[<img src="./github-assets/html.png" width="60" height="60" />](https://www.creative-tim.com/product/paper-dashboard-2-pro)
+[<img src="./github-assets/react.svg" width="60" height="60" />](https://www.creative-tim.com/product/paper-dashboard-pro-react)
+[<img src="./github-assets/angular.png" width="60" height="60" />](https://www.creative-tim.com/product/vue-paper-dashboard-2-pro)
+[<img src="./github-assets/vuejs.png" width="60" height="60" />](https://www.creative-tim.com/product/paper-dashboard-pro-angular)
 
 
-| HTML | React | Angular |
-| --- | --- | --- |
-| [![Now UI Dashboard HTML](https://s3.amazonaws.com/creativetim_bucket/products/75/original/opt_nud_thumbnail.jpg)](https://www.creative-tim.com/product/now-ui-dashboard) | [![Now UI Dashboard React](https://s3.amazonaws.com/creativetim_bucket/products/76/original/opt_nud_react_thumbnail.jpg)](https://www.creative-tim.com/product/now-ui-dashboard-react) | [![Now UI Dashboard Angular](https://s3.amazonaws.com/creativetim_bucket/products/85/original/opt_nud_angular_thumbnail.jpg)](https://www.creative-tim.com/product/now-ui-dashboard-angular2)
+| HTML | React | Vue | Angular |
+| --- | --- | --- | --- |
+| [![Paper Dashboard 2 Pro HTML](https://s3.amazonaws.com/creativetim_bucket/products/84/thumb/opt_pd2p_thumbnail.jpg)](https://www.creative-tim.com/product/paper-dashboard-2-pro) | [![Paper Dashboard Pro React](https://s3.amazonaws.com/creativetim_bucket/products/134/thumb/opt_pdp_react_thumbnail.jpg)](https://www.creative-tim.com/product/paper-dashboard-pro-react)  | [![Vue Paper Dashboard 2 Pro](https://s3.amazonaws.com/creativetim_bucket/products/88/thumb/opt_pd2p_vue_thumbnail.jpg)](https://www.creative-tim.com/product/vue-paper-dashboard-2-pro)  | [![Paper Dashboard Pro Angular](https://s3.amazonaws.com/creativetim_bucket/products/59/thumb/opt_pdp_angular_thumbnail.jpg)](https://www.creative-tim.com/product/paper-dashboard-pro-angular)
 
 ## Demo
 
-| Dashboard | User Profile | Tables | Maps | Notification |
-| --- | --- | --- | --- | --- |
-| [![Start page](./src/assets/github/dashboard.jpg)](https://demos.creative-tim.com/now-ui-dashboard-react/#/admin/dashboard) | [![User profile page](./src/assets/github/user_profile.jpg)](https://demos.creative-tim.com/now-ui-dashboard-react/#/admin/user) | [![Tables page ](./src/assets/github/tables.jpg)](https://demos.creative-tim.com/now-ui-dashboard-react/#/admin/table) | [![Maps Page](./src/assets/github/maps.jpg)](https://demos.creative-tim.com/now-ui-dashboard-react/#/admin/maps) | [![Notification page](./src/assets/github/notification.jpg)](https://demos.creative-tim.com/now-ui-dashboard-react/#/admin/notifications)
+- [Start page](https://demos.creative-tim.com/paper-dashboard-pro-react/#/admin/dashboard)
+- [User profile page](https://demos.creative-tim.com/paper-dashboard-pro-react/#/admin/user-profile)
+- [Tables page ](https://demos.creative-tim.com/paper-dashboard-pro-react/#/admin/extended-tables)
+- [Maps Page](https://demos.creative-tim.com/paper-dashboard-pro-react/#/admin/google-maps)
+- [Notifications page](https://demos.creative-tim.com/paper-dashboard-pro-react/#/admin/notifications)
 
-[View More](https://demos.creative-tim.com/now-ui-dashboard-react/#/admin/dashboard).
+[View More](https://demos.creative-tim.com/paper-dashboard-pro-react/#/admin/dashboard).
 
 
 ## Quick start
 
 Quick start options:
 
-- `npm i now-ui-dashboard-react` (you will need to import from the dist folder our components)
-- Clone the repo: `git clone https://github.com/creativetimofficial/now-ui-dashboard-react.git`.
-- [Download from Github](https://github.com/creativetimofficial/now-ui-dashboard-react/archive/master.zip).
-- [Download from Creative Tim](https://www.creative-tim.com/product/now-ui-dashboard-react).
+- Buy from [Creative Tim](https://www.creative-tim.com/product/paper-dashboard-pro-react)
 
 
 ## Documentation
-The documentation for the Now UI Dashboard React is hosted at our [website](https://demos.creative-tim.com/now-ui-dashboard-react/#/documentation/tutorial).
+The documentation for the Material Dashboard Pro is hosted at our [website](https://demos.creative-tim.com/paper-dashboard-pro-react/#/documentation/tutorial).
 
 
 ## File Structure
@@ -66,109 +80,31 @@ The documentation for the Now UI Dashboard React is hosted at our [website](http
 Within the download you'll find the following directories and files:
 
 ```
-Now UI Dashboard React
-├── CHANGELOG.md
-├── Documentation
-│   └── tutorial-components.html
-├── LICENSE.md
-├── README.md
-├── package.json
-├── public
-│   ├── apple-icon.png
-│   ├── favicon.ico
-│   ├── index.html
-│   └── manifest.json
-└── src
-    ├── assets
-    │   ├── css
-    │   │   └── demo.css
-    │   ├── fonts
-    │   │   └── ...
-    │   ├── img
-    │   │   ├── flags
-    │   │   │   └── ...
-    │   │   └── ...
-    │   └── sass
-    │       ├── now-ui-dashboard
-    │       │   ├── mixins
-    │       │   │   └── ...
-    │       │   ├── plugins
-    │       │   │   └── ...
-    │       │   └── ...
-    │       └── now-ui-dashboard.scss
-    ├── components
-    │   ├── Card
-    │   │   └── Card.js
-    │   ├── Footer
-    │   │   └── Footer.js
-    │   ├── FormInputs
-    │   │   └── FormInputs.js
-    │   ├── Header
-    │   │   └── Header.js
-    │   ├── Sidebar
-    │   │   └── Sidebar.js
-    │   └── Task
-    │       └── Task.js
-    ├── containers
-    │   └── App
-    │       └── App.js
-    ├── elements
-    │   ├── CardElements
-    │   │   ├── CardLegend.js
-    │   │   ├── CardStatistics.js
-    │   │   ├── CardStats.js
-    │   │   └── UserCardAuthor.js
-    │   ├── CustomButton
-    │   │   └── CustomButton.js
-    │   ├── CustomCheckbox
-    │   │   └── CustomCheckbox.js
-    │   └── CustomRadio
-    │       └── CustomRadio.js
-    ├── index.js
-    ├── routes
-    │   └── app.js
-    ├── variables
-    │   ├── charts.js
-    │   ├── general.js
-    │   └── icons.js
-    └── views
-        ├── Dashboard
-        │   └── Dashboard.js
-        ├── Icons
-        │   └── Icons.js
-        ├── Maps
-        │   └── Maps.js
-        ├── Notifications
-        │   ├── NotificationSystem
-        │   │   └── NotificationSystem.js
-        │   └── Notifications.js
-        ├── Table
-        │   └── Tables.js
-        ├── Typography
-        │   └── Typography.js
-        └── User
-            └── User.js
+paper-dashboad-pro-react
+│
+
 ```
 
 ## Browser Support
 
 At present, we officially aim to support the last two versions of the following browsers:
 
-<img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/chrome.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/firefox.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/edge.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/safari.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/opera.png" width="64" height="64">
+<img src="./github-assets/chrome.png" width="64" height="64"> <img src="./github-assets/firefox.png" width="64" height="64"> <img src="./github-assets/edge.png" width="64" height="64"> <img src="./github-assets/safari.png" width="64" height="64"> <img src="./github-assets/opera.png" width="64" height="64">
 
 
 ## Resources
-- Demo: https://demos.creative-tim.com/now-ui-dashboard-react
-- Download Page: https://www.creative-tim.com/product/now-ui-dashboard-react
-- Documentation: https://demos.creative-tim.com/now-ui-dashboard-react/#/documentation/tutorial
+- [Live Preview](https://demos.creative-tim.com/paper-dashboard-pro-react/#/admin/dashboard)
+- Buy Page: https://www.creative-tim.com/product/paper-dashboard-pro-react
+- Documentation is [here](https://demos.creative-tim.com/paper-dashboard-pro-react/#/documentation/tutorial)
 - License Agreement: https://www.creative-tim.com/license
 - Support: https://www.creative-tim.com/contact-us
-- Issues: [Github Issues Page](https://github.com/creativetimofficial/now-ui-dashboard-react/issues)
+- Issues: [Github Issues Page](https://github.com/creativetimofficial/ct-paper-dashboard-pro-react/issues)
+- Paper Dashboard React - [demo](https://www.creative-tim.com/product/paper-dashboard-react?ref=github-md-pro-react)
 
 ## Reporting Issues
-We use GitHub Issues as the official bug tracker for the Now UI Dashboard React. Here are some advices for our users that want to report an issue:
+We use GitHub Issues as the official bug tracker for the Material Dashboard Pro. Here are some advices for our users that want to report an issue:
 
-1. Make sure that you are using the latest version of the Now UI Dashboard React. Check the CHANGELOG from your dashboard on our [website](https://www.creative-tim.com/).
+1. Make sure that you are using the latest version of the Material Dashboard Pro. Check the CHANGELOG from your dashboard on our [website](https://www.creative-tim.com/).
 2. Providing us reproducible steps for the issue will shorten the time it takes for it to be fixed.
 3. Some issues may be browser specific, so specifying in what browser you encountered the issue might help.
 
@@ -179,19 +115,19 @@ If you have questions or need help integrating the product please [contact us](h
 ## Licensing
 
 - Copyright 2020 Creative Tim (https://www.creative-tim.com)
-- Licensed under MIT (https://github.com/creativetimofficial/now-ui-dashboard-react/blob/master/LICENSE.md)
+- Creative Tim [license](https://www.creative-tim.com/license)
 
 ## Useful Links
 
-More products from Creative Tim: <https://www.creative-tim.com/products>
+ - [More products](https://www.creative-tim.com/bootstrap-themes) from Creative Tim
 
-Tutorials: <https://www.youtube.com/channel/UCVyTG4sCw-rOvB9oHkzZD1w>
+- [Tutorials](https://www.youtube.com/channel/UCVyTG4sCw-rOvB9oHkzZD1w)
 
-Freebies: <https://www.creative-tim.com/products>
+- [Freebies](https://www.creative-tim.com/bootstrap-themes/free) from Creative Tim
 
-Affiliate Program (earn money): <https://www.creative-tim.com/affiliates/new>
+- [Affiliate Program](https://www.creative-tim.com/affiliates/new) (earn money)
 
-Social Media:
+##### Social Media
 
 Twitter: <https://twitter.com/CreativeTim>
 

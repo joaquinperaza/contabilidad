@@ -1,12 +1,11 @@
 /*!
 
 =========================================================
-* Now UI Dashboard React - v1.4.0
+* Paper Dashboard PRO React - v1.2.0
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/now-ui-dashboard-react
+* Product Page: https://www.creative-tim.com/product/paper-dashboard-pro-react
 * Copyright 2020 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/now-ui-dashboard-react/blob/master/LICENSE.md)
 
 * Coded by Creative Tim
 
@@ -20,17 +19,20 @@ import ReactDOM from "react-dom";
 import { createBrowserHistory } from "history";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
 
-import "bootstrap/dist/css/bootstrap.css";
-import "assets/scss/now-ui-dashboard.scss?v1.4.0";
-import "assets/css/demo.css";
-
+import AuthLayout from "layouts/Auth.js";
 import AdminLayout from "layouts/Admin.js";
+
+import "bootstrap/dist/css/bootstrap.css";
+import "assets/scss/paper-dashboard.scss?v=1.2.0";
+import "assets/demo/demo.css";
+import "perfect-scrollbar/css/perfect-scrollbar.css";
 
 const hist = createBrowserHistory();
 
 ReactDOM.render(
   <Router history={hist}>
     <Switch>
+      <Route path="/auth" render={(props) => <AuthLayout {...props} />} />
       <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
       <Redirect to="/admin/dashboard" />
     </Switch>

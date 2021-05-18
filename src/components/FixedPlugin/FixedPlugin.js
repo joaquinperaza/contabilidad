@@ -1,12 +1,11 @@
 /*!
 
 =========================================================
-* Now UI Dashboard React - v1.4.0
+* Paper Dashboard PRO React - v1.2.0
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/now-ui-dashboard-react
+* Product Page: https://www.creative-tim.com/product/paper-dashboard-pro-react
 * Copyright 2020 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/now-ui-dashboard-react/blob/master/LICENSE.md)
 
 * Coded by Creative Tim
 
@@ -15,8 +14,11 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-/*eslint-disable*/
 import React, { Component } from "react";
+// react plugin used to create switch buttons
+import Switch from "react-bootstrap-switch";
+
+import { Button } from "reactstrap";
 
 class FixedPlugin extends Component {
   constructor(props) {
@@ -46,83 +48,143 @@ class FixedPlugin extends Component {
               <div className="badge-colors text-center">
                 <span
                   className={
-                    this.props.bgColor === "yellow"
-                      ? "badge filter badge-yellow active"
-                      : "badge filter badge-yellow"
+                    this.props.bgColor === "black"
+                      ? "badge filter badge-dark active"
+                      : "badge filter badge-dark"
                   }
-                  data-color="yellow"
+                  data-color="black"
                   onClick={() => {
-                    this.props.handleColorClick("yellow");
+                    this.props.handleBgClick("black");
                   }}
                 />
                 <span
                   className={
-                    this.props.bgColor === "blue"
-                      ? "badge filter badge-blue active"
-                      : "badge filter badge-blue"
+                    this.props.bgColor === "brown"
+                      ? "badge filter badge-default active"
+                      : "badge filter badge-default"
                   }
-                  data-color="blue"
+                  data-color="black"
                   onClick={() => {
-                    this.props.handleColorClick("blue");
+                    this.props.handleBgClick("brown");
                   }}
                 />
                 <span
                   className={
-                    this.props.bgColor === "green"
-                      ? "badge filter badge-green active"
-                      : "badge filter badge-green"
+                    this.props.bgColor === "white"
+                      ? "badge filter badge-light active"
+                      : "badge filter badge-light"
                   }
-                  data-color="green"
+                  data-color="white"
                   onClick={() => {
-                    this.props.handleColorClick("green");
-                  }}
-                />
-                <span
-                  className={
-                    this.props.bgColor === "orange"
-                      ? "badge filter badge-orange active"
-                      : "badge filter badge-orange"
-                  }
-                  data-color="orange"
-                  onClick={() => {
-                    this.props.handleColorClick("orange");
-                  }}
-                />
-                <span
-                  className={
-                    this.props.bgColor === "red"
-                      ? "badge filter badge-red active"
-                      : "badge filter badge-red"
-                  }
-                  data-color="red"
-                  onClick={() => {
-                    this.props.handleColorClick("red");
+                    this.props.handleBgClick("white");
                   }}
                 />
               </div>
             </li>
-
+            <li className="header-title">SIDEBAR ACTIVE COLOR</li>
+            <li className="adjustments-line">
+              <div className="badge-colors text-center">
+                <span
+                  className={
+                    this.props.activeColor === "primary"
+                      ? "badge filter badge-primary active"
+                      : "badge filter badge-primary"
+                  }
+                  data-color="primary"
+                  onClick={() => {
+                    this.props.handleActiveClick("primary");
+                  }}
+                />
+                <span
+                  className={
+                    this.props.activeColor === "info"
+                      ? "badge filter badge-info active"
+                      : "badge filter badge-info"
+                  }
+                  data-color="info"
+                  onClick={() => {
+                    this.props.handleActiveClick("info");
+                  }}
+                />
+                <span
+                  className={
+                    this.props.activeColor === "success"
+                      ? "badge filter badge-success active"
+                      : "badge filter badge-success"
+                  }
+                  data-color="success"
+                  onClick={() => {
+                    this.props.handleActiveClick("success");
+                  }}
+                />
+                <span
+                  className={
+                    this.props.activeColor === "warning"
+                      ? "badge filter badge-warning active"
+                      : "badge filter badge-warning"
+                  }
+                  data-color="warning"
+                  onClick={() => {
+                    this.props.handleActiveClick("warning");
+                  }}
+                />
+                <span
+                  className={
+                    this.props.activeColor === "danger"
+                      ? "badge filter badge-danger active"
+                      : "badge filter badge-danger"
+                  }
+                  data-color="danger"
+                  onClick={() => {
+                    this.props.handleActiveClick("danger");
+                  }}
+                />
+              </div>
+            </li>
+            <li className="header-title">SIDEBAR MINI</li>
+            <li className="adjustments-line">
+              <div className="togglebutton switch-sidebar-mini">
+                <Switch
+                  onChange={this.props.handleMiniClick}
+                  value={this.props.sidebarMini}
+                  onColor="info"
+                  offColor="info"
+                />
+              </div>
+            </li>
             <li className="button-container">
-              <a
-                href="https://www.creative-tim.com/product/now-ui-dashboard-pro-react?ref=nudr-fixed-plugin"
+              <Button
+                href="https://www.creative-tim.com/product/paper-dashboard-pro-react"
+                color="primary"
+                block
+                className="btn-round"
                 target="_blank"
-                className="btn btn-primary btn-block btn-round"
               >
-                Buy pro
-              </a>
-              <a
-                href="https://www.creative-tim.com/product/now-ui-dashboard-react?ref=nudr-fixed-plugin"
+                Buy now
+              </Button>
+            </li>
+            <li className="button-container">
+              <Button
+                href="https://demos.creative-tim.com/paper-dashboard-pro-react/#/documentation/tutorial"
+                color="default"
+                block
+                className="btn-round"
+                outline
                 target="_blank"
-                className="btn btn-warning btn-block btn-round"
               >
-                Download free
-              </a>
-              <a
-                href="https://demos.creative-tim.com/now-ui-dashboard-react/#/documentation/tutorial?ref=nudr-fixed-plugin"
-                className="btn btn-block btn-round btn-info"
+                <i className="nc-icon nc-paper" /> Documentation
+              </Button>
+            </li>
+            <li className="button-container">
+              <Button
+                href="https://www.creative-tim.com/product/paper-dashboard-react"
+                color="info"
+                block
+                className="btn-round"
+                target="_blank"
               >
-                Documentation
-              </a>
+                Get free version
+              </Button>
             </li>
           </ul>
         </div>
